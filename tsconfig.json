@@ -1,0 +1,8 @@
+{
+    "extends": "expo-module-scripts/tsconfig.base",
+    "compilerOptions": {
+        "outDir": "./dist"
+    },
+    "include": ["./src"],
+    "exclude": ["example", "node_modules", "dist", "**/__mocks__/*", "**/__tests__/*"]
+}
