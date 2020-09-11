@@ -16,5 +16,6 @@ dist
 .vscode
 # macOS
 .DS_Store
+example-patient/**/*
 
 coverage
