@@ -4,47 +4,56 @@ import { RouteWithLayout, PrivateRouteWithLayout } from '../components'
 import { Main as MainLayout } from '../layouts'
 
 import {
-    SettingsScreen,
-    LoginScreen,
-    DashboardScreen
+  SettingsScreen,
+  LoginScreen,
+  DashboardScreen,
+  CreateNewServiceRequestScreen,
 } from '../screens'
 import { useFhirContext, LoginCallback } from 'smartmarkers-lib'
 
 const Routes: React.FC = () => {
-    const fhirContext = useFhirContext()
-    const history = useHistory()
+  const fhirContext = useFhirContext()
+  const history = useHistory()
 
-    return (
-        <Switch>
-            <Redirect exact from="/" to={`/dashboard`} />
-            <RouteWithLayout exact path="/login" component={LoginScreen} layout={MainLayout} />
-            <Route
-                exact
-                path="/auth-callback"
-                render={() => (
-                    <LoginCallback
-                        redirect={() => {history.push("/dashboard");}}
-                        loginCallback={fhirContext.loginCallback}
-                    />
-                )}
-            />
-            <PrivateRouteWithLayout
-                component={DashboardScreen}
-                exact
-                layout={MainLayout}
-                path="/dashboard"
-                isAuthenticated={fhirContext.isAuthenticated}
-            />
-            <PrivateRouteWithLayout
-                component={SettingsScreen}
-                exact
-                layout={MainLayout}
-                path="/settings"
-                isAuthenticated={fhirContext.isAuthenticated}
-            />
-            <Redirect to="/not-found" />
-        </Switch>
-    )
+  return (
+    <Switch>
+      <Redirect exact from="/" to={`/dashboard`} />
+      <RouteWithLayout exact path="/login" component={LoginScreen} layout={MainLayout} />
+      <Route
+        exact
+        path="/auth-callback"
+        render={() => (
+          <LoginCallback
+            redirect={() => {
+              history.push('/dashboard')
+            }}
+            loginCallback={fhirContext.loginCallback}
+          />
+        )}
+      />
+      <PrivateRouteWithLayout
+        component={DashboardScreen}
+        layout={MainLayout}
+        path="/dashboard"
+        isAuthenticated={fhirContext.isAuthenticated}
+      />
+      <PrivateRouteWithLayout
+        exact
+        component={CreateNewServiceRequestScreen}
+        layout={MainLayout}
+        path="/create-new-service-request/:patientId"
+        isAuthenticated={fhirContext.isAuthenticated}
+      />
+      <PrivateRouteWithLayout
+        component={SettingsScreen}
+        exact
+        layout={MainLayout}
+        path="/settings"
+        isAuthenticated={fhirContext.isAuthenticated}
+      />
+      <Redirect to="/not-found" />
+    </Switch>
+  )
 }
 
 export default Routes

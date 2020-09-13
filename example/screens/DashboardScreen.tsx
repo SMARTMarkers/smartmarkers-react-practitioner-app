@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { List, ListItem, Text, View, Body, Right, Icon, Left, Button } from 'native-base'
+import { List, ListItem, Text, View, Body, Right, Icon, Left, Button, Picker } from 'native-base'
 import {
   IPatient,
   PatientList,
@@ -15,22 +15,16 @@ import {
   RequestList,
   Instrument,
   Report,
+  FhirResourceView,
+  QuestionnaireResponse,
 } from 'smartmarkers-lib'
 
-// import { RequestList } from '../components/RequestList'
 import ResponseScreen from './ResponseScreen'
-import CreateServiceRequestScreen from './CreateServiceRequestScreen'
 import { ScrollView } from 'react-native'
+import CreateNewServiceRequestScreen from './CreateNewServiceRequestScreen'
+import { Switch, Route, useHistory } from 'react-router-dom'
 
 interface RouteParams {}
-
-enum ContentType {
-  ServiceRequestList,
-  History,
-  InstrumentList,
-  ServiceRequestCreator,
-  ResponseScreen,
-}
 
 function _calculateAge(birthday: Date) {
   var ageDifMs = Date.now() - birthday.getTime()
@@ -86,25 +80,23 @@ const getGenderIcon = (gender?: AdministrativeGender) => {
 const DashboardScreen: React.FC<any> = () => {
   const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null)
   const [task, setTask] = useState<Task | null>(null)
-  const [contentType, setContentType] = useState(ContentType.ServiceRequestList)
-  const [instrument, setInstrument] = useState<Instrument | null>(null)
   const [report, setReport] = useState<Report | null>(null)
+
+  const history = useHistory()
 
   const onItemPress = useCallback(
     async (item: IPatient) => {
       setSelectedPatient(item)
-      setContentType(ContentType.ServiceRequestList)
+      history.push('/dashboard')
       setTask(null)
     },
     [setTask, setSelectedPatient]
   )
 
-  console.log({ selectedPatient })
-
   const onItemPressRequest = useCallback(
-    async (t: Task) => {
+    (t: Task) => {
       setTask(t)
-      setContentType(ContentType.History)
+      history.push('dashboard/history')
     },
     [setTask]
   )
@@ -157,13 +149,30 @@ const DashboardScreen: React.FC<any> = () => {
           backgroundColor: '#f0f2f8',
           borderRadius: 10,
           marginBottom: 3,
+          paddingLeft: 15,
+          paddingRight: 15,
         }}
       >
         <Body>
-          <Text style={{ color: '#002a78', fontWeight: 'bold' }}>{item.getTitle()}</Text>
-          <Text note style={{ color: '#a4a5a6' }}>
-            {item.getNote()} {item.schedule ? TaskScheduleStatus[item.schedule?.status] : ''}
-          </Text>
+          <View
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <View>
+              <Text style={{ color: '#002a78', fontWeight: 'bold' }}>{item.getTitle()}</Text>
+              <Text note style={{ color: '#a4a5a6' }}>
+                {item.getNote()} {item.schedule ? TaskScheduleStatus[item.schedule?.status] : ''}
+              </Text>
+            </View>
+            <Text style={{ color: '#a4a5a6', fontWeight: 'bold' }}>
+              Surveys: {item.reports?.length}
+            </Text>
+          </View>
         </Body>
         <Right>
           <Icon style={{ color: '#002a78' }} active name="arrow-forward" />
@@ -172,6 +181,9 @@ const DashboardScreen: React.FC<any> = () => {
     ),
     []
   )
+
+  const onCreateNewRequest = () =>
+    history.push(`/create-new-service-request/${selectedPatient!.id}`)
 
   return (
     <View
@@ -201,6 +213,7 @@ const DashboardScreen: React.FC<any> = () => {
           margin: '20px',
           marginTop: 15,
           overflow: 'hidden',
+          padding: 20,
         }}
       >
         <View
@@ -212,66 +225,72 @@ const DashboardScreen: React.FC<any> = () => {
           }}
         >
           {selectedPatient && (
-            <>
-              <Text style={{ fontSize: 24, fontWeight: 'bold', paddingLeft: 15, flexGrow: 1 }}>
+            <View
+              style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', width: '100%' }}
+            >
+              {history.location.pathname !== '/dashboard' && (
+                <Button transparent onPress={() => history.goBack()}>
+                  <Icon
+                    name="arrow-back"
+                    style={{ fontSize: 30, fontWeight: 'bold', color: '#002a78' }}
+                  />
+                </Button>
+              )}
+              <Text style={{ fontSize: 24, fontWeight: 'bold', flexGrow: 1, color: '#002a78' }}>
                 {getPatientName(selectedPatient)}
               </Text>
               <Button
-                onPress={() => setContentType(ContentType.InstrumentList)}
-                style={{ width: 'max-content', alignSelf: 'flex-end', flexGrow: 0 }}
+                onPress={onCreateNewRequest}
+                style={{
+                  width: 'max-content',
+                  alignSelf: 'flex-end',
+                  flexGrow: 0,
+                  backgroundColor: '#002a78',
+                }}
               >
                 <Text>New request</Text>
               </Button>
-            </>
+            </View>
           )}
         </View>
-        <ScrollView style={{ height: 'calc(100vh - 111px)', padding: 10 }}>
-          {selectedPatient && contentType === ContentType.ServiceRequestList && (
-            <RequestList
-              onItemPress={onItemPressRequest}
-              filter={'status=active'}
-              statuses={[
-                TaskScheduleStatus.Due,
-                TaskScheduleStatus.Upcoming,
-                TaskScheduleStatus.Overdue,
-              ]}
-              patientId={selectedPatient.id}
-              renderItem={renderRequestListItem}
-            />
-          )}
-          {/*
-          task && contentType === ContentType.History && (
-            <ResponseScreen qrId = {task?.request?.id} />
-            )*/}
-          {contentType === ContentType.InstrumentList && (
-            <InstrumentList
-              type={InstrumentType.Questionnaire}
-              onItemPress={(e: any) => {
-                setInstrument(e)
-                setContentType(ContentType.ServiceRequestCreator)
-              }}
-              patientId={selectedPatient?.id}
-            />
-          )}
-          {contentType === ContentType.History && (
-            <ReportList
-              type={ReportType.QuestionnaireResponse}
-              onItemPress={(r: Report) => {
-                setReport(r)
-                setContentType(ContentType.ResponseScreen)
-              }}
-              useClientPatientId={false}
-              filter={`patient=${selectedPatient?.id}&based-on=ServiceRequest/${task?.request?.id}`}
-            />
-          )}
-          {contentType === ContentType.ServiceRequestCreator && (
-            <CreateServiceRequestScreen
-              patientId={selectedPatient!.id}
-              instrumentId={instrument!.id}
-              onSubmitCallback={() => setContentType(ContentType.ServiceRequestList)}
-            />
-          )}
-          {contentType === ContentType.ResponseScreen && <ResponseScreen qrId={report!.id} />}
+        <ScrollView style={{ height: 'calc(100vh - 176px)', padding: 10 }}>
+          <Switch>
+            <Route exact path="/dashboard">
+              {selectedPatient && (
+                <RequestList
+                  onItemPress={onItemPressRequest}
+                  filter={'status=active'}
+                  statuses={[
+                    TaskScheduleStatus.Due,
+                    TaskScheduleStatus.Upcoming,
+                    TaskScheduleStatus.Overdue,
+                  ]}
+                  patientId={selectedPatient.id}
+                  renderItem={renderRequestListItem}
+                />
+              )}
+            </Route>
+            <Route exact path="/dashboard/create-new-service-request">
+              <CreateNewServiceRequestScreen patientId={selectedPatient?.id || ''} />
+            </Route>
+            <Route exact path="/dashboard/history">
+              <ReportList
+                type={ReportType.QuestionnaireResponse}
+                onItemPress={(r: Report) => {
+                  setReport(r)
+                  history.push('/dashboard/history/report')
+                }}
+                useClientPatientId={false}
+                filter={`patient=${selectedPatient?.id}&based-on=ServiceRequest/${task?.request?.id}`}
+              />
+            </Route>
+            <Route exact path="/dashboard/history/report">
+              <ResponseScreen qrId={report?.id || ''} />
+            </Route>
+            <Route path="/dashboard/history/report/resource">
+              <FhirResourceView response={report as QuestionnaireResponse} />
+            </Route>
+          </Switch>
         </ScrollView>
       </View>
     </View>
