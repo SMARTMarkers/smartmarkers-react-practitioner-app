@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { List, ListItem, Text, Body, Spinner, View, Button, Right, Icon, Footer } from 'native-base'
-import { useFhirContext, TaskScheduleForm, TaskSchedule, Instrument } from 'smartmarkers-lib'
+import { useFhirContext, TaskSchedule, Instrument } from 'smartmarkers-lib'
 import { ScrollView } from 'react-native'
 import { useParams, useHistory } from 'react-router-dom'
 import InstrumentSelectorModal from '../components/InstrumentSelectorModal'
+import TaskScheduleForm from '../components/TaskScheduleForm'
 
 interface RouteParams {
   patientId: string

@@ -79,6 +79,7 @@ const DashboardScreen: React.FC<any> = () => {
   const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null)
 
   const history = useHistory()
+  const backArrowIsVisible = history.location.pathname.split('/').length > 3
   const { patientId } = useParams()
 
   useEffect(() => {
@@ -179,7 +180,7 @@ const DashboardScreen: React.FC<any> = () => {
             <View
               style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', width: '100%' }}
             >
-              {history.location.pathname !== '/dashboard' && (
+              {backArrowIsVisible && (
                 <Button transparent onPress={() => history.goBack()}>
                   <Icon
                     name="arrow-back"
