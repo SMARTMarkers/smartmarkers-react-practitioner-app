@@ -58,7 +58,7 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
       selectedInstruments.forEach(
         async (i: Instrument) => await server?.createServiceRequest(i, item, patientId)
       )
-      history.push('/dashboard')
+      history.push(`/dashboard/${patientId}`)
     }
   }
 

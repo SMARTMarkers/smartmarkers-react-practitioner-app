@@ -1,30 +1,22 @@
-import React, { useState, useCallback } from 'react'
-import { List, ListItem, Text, View, Body, Right, Icon, Left, Button, Picker } from 'native-base'
+import React, { useState, useCallback, useEffect } from 'react'
+import { List, ListItem, Text, View, Body, Icon, Left, Button } from 'native-base'
 import {
   IPatient,
   PatientList,
-  TaskScheduleStatus,
-  Task,
   NameUse,
   IHumanName,
   AdministrativeGender,
-  ReportType,
-  ReportList,
-  InstrumentList,
-  InstrumentType,
-  RequestList,
-  Instrument,
-  Report,
-  FhirResourceView,
-  QuestionnaireResponse,
+  useFhirContext,
+  Server,
 } from 'smartmarkers-lib'
 
-import ResponseScreen from './ResponseScreen'
+import ResponseView from '../components/ResponseView'
 import { ScrollView } from 'react-native'
 import CreateNewServiceRequestScreen from './CreateNewServiceRequestScreen'
-import { Switch, Route, useHistory } from 'react-router-dom'
-
-interface RouteParams {}
+import { Switch, Route, useHistory, useParams } from 'react-router-dom'
+import RequestList from '../components/RequestList'
+import ReportList from '../components/ReportList'
+import FhirResource from '../components/FhirResource'
 
 function _calculateAge(birthday: Date) {
   var ageDifMs = Date.now() - birthday.getTime()
@@ -77,28 +69,30 @@ const getGenderIcon = (gender?: AdministrativeGender) => {
   return <Icon style={{ fontSize: 22, width: 'auto', color }} active name={iconName} />
 }
 
+const getPatient = async (patientId: string, callback: any, server?: Server) => {
+  const patients = await server?.getPatients(`_id=${patientId}`)
+  patients && patients[0] && callback(patients[0])
+}
+
 const DashboardScreen: React.FC<any> = () => {
+  const { server } = useFhirContext()
   const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null)
-  const [task, setTask] = useState<Task | null>(null)
-  const [report, setReport] = useState<Report | null>(null)
 
   const history = useHistory()
+  const { patientId } = useParams()
+
+  useEffect(() => {
+    if (patientId) {
+      getPatient(patientId, setSelectedPatient, server || undefined)
+    }
+  }, [patientId, setSelectedPatient])
 
   const onItemPress = useCallback(
     async (item: IPatient) => {
+      history.push(`/dashboard/${item.id}`)
       setSelectedPatient(item)
-      history.push('/dashboard')
-      setTask(null)
     },
-    [setTask, setSelectedPatient]
-  )
-
-  const onItemPressRequest = useCallback(
-    (t: Task) => {
-      setTask(t)
-      history.push('dashboard/history')
-    },
-    [setTask]
+    [setSelectedPatient]
   )
 
   const renderItem = (item: IPatient, key: any) => {
@@ -138,49 +132,6 @@ const DashboardScreen: React.FC<any> = () => {
       </ListItem>
     )
   }
-
-  const renderRequestListItem = useCallback(
-    (item: Task, key: any, onItemPress: (item: Task) => void, isLast: boolean) => (
-      <ListItem
-        key={key}
-        onPress={() => onItemPress(item)}
-        noBorder
-        style={{
-          backgroundColor: '#f0f2f8',
-          borderRadius: 10,
-          marginBottom: 3,
-          paddingLeft: 15,
-          paddingRight: 15,
-        }}
-      >
-        <Body>
-          <View
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            <View>
-              <Text style={{ color: '#002a78', fontWeight: 'bold' }}>{item.getTitle()}</Text>
-              <Text note style={{ color: '#a4a5a6' }}>
-                {item.getNote()} {item.schedule ? TaskScheduleStatus[item.schedule?.status] : ''}
-              </Text>
-            </View>
-            <Text style={{ color: '#a4a5a6', fontWeight: 'bold' }}>
-              Surveys: {item.reports?.length}
-            </Text>
-          </View>
-        </Body>
-        <Right>
-          <Icon style={{ color: '#002a78' }} active name="arrow-forward" />
-        </Right>
-      </ListItem>
-    ),
-    []
-  )
 
   const onCreateNewRequest = () =>
     history.push(`/create-new-service-request/${selectedPatient!.id}`)
@@ -255,40 +206,20 @@ const DashboardScreen: React.FC<any> = () => {
         </View>
         <ScrollView style={{ height: 'calc(100vh - 176px)', padding: 10 }}>
           <Switch>
-            <Route exact path="/dashboard">
-              {selectedPatient && (
-                <RequestList
-                  onItemPress={onItemPressRequest}
-                  filter={'status=active'}
-                  statuses={[
-                    TaskScheduleStatus.Due,
-                    TaskScheduleStatus.Upcoming,
-                    TaskScheduleStatus.Overdue,
-                  ]}
-                  patientId={selectedPatient.id}
-                  renderItem={renderRequestListItem}
-                />
-              )}
+            <Route exact path="/dashboard/:patientId">
+              <RequestList />
             </Route>
             <Route exact path="/dashboard/create-new-service-request">
               <CreateNewServiceRequestScreen patientId={selectedPatient?.id || ''} />
             </Route>
-            <Route exact path="/dashboard/history">
-              <ReportList
-                type={ReportType.QuestionnaireResponse}
-                onItemPress={(r: Report) => {
-                  setReport(r)
-                  history.push('/dashboard/history/report')
-                }}
-                useClientPatientId={false}
-                filter={`patient=${selectedPatient?.id}&based-on=ServiceRequest/${task?.request?.id}`}
-              />
+            <Route exact path="/dashboard/:patientId/:requestId/history">
+              <ReportList />
             </Route>
-            <Route exact path="/dashboard/history/report">
-              <ResponseScreen qrId={report?.id || ''} />
+            <Route exact path="/dashboard/:patientId/:requestId/history/:reportId/report">
+              <ResponseView />
             </Route>
-            <Route path="/dashboard/history/report/resource">
-              <FhirResourceView response={report as QuestionnaireResponse} />
+            <Route path="/dashboard/:patientId/:requestId/history/:reportId/resource">
+              <FhirResource />
             </Route>
           </Switch>
         </ScrollView>

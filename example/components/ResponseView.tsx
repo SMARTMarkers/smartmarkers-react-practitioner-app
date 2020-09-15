@@ -6,13 +6,14 @@ import {
   QuestionnaireResponse,
   QuestionnaireResponseView,
 } from 'smartmarkers-lib'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 interface RouteParams {
-  qrId: string
+  reportId: string
 }
 
-const ResponseScreen: React.FC<RouteParams> = ({ qrId }) => {
+const ResponseView: React.FC<any> = () => {
+  const { reportId } = useParams<RouteParams>()
   const { server } = useFhirContext()
   const [isReady, setIsReady] = React.useState(false)
   const [item, setItem] = React.useState<Report | undefined>(undefined)
@@ -21,7 +22,7 @@ const ResponseScreen: React.FC<RouteParams> = ({ qrId }) => {
   React.useEffect(() => {
     const loadItems = async () => {
       if (server) {
-        const item = (await server.getQuestionnaireResponseById(qrId)) as Report
+        const item = (await server.getQuestionnaireResponseById(reportId)) as Report
         if (item) {
           setItem(item)
         }
@@ -36,7 +37,7 @@ const ResponseScreen: React.FC<RouteParams> = ({ qrId }) => {
     return <Spinner />
   }
 
-  const goToFhirResource = () => history.push(`/dashboard/history/report/resource`)
+  const goToFhirResource = () => history.push(`resource`)
 
   return (
     <View>
@@ -57,4 +58,4 @@ const ResponseScreen: React.FC<RouteParams> = ({ qrId }) => {
   )
 }
 
-export default ResponseScreen
+export default ResponseView

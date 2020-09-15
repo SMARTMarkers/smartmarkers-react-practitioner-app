@@ -34,7 +34,15 @@ const Routes: React.FC = () => {
       <PrivateRouteWithLayout
         component={DashboardScreen}
         layout={MainLayout}
-        path="/dashboard"
+        exact
+        path={[
+          '/dashboard',
+          '/dashboard/:patientId',
+          '/dashboard/create-new-service-request',
+          '/dashboard/:patientId/:requestId/history',
+          '/dashboard/:patientId/:requestId/history/:reportId/report',
+          '/dashboard/:patientId/:requestId/history/:reportId/resource',
+        ]}
         isAuthenticated={fhirContext.isAuthenticated}
       />
       <PrivateRouteWithLayout
