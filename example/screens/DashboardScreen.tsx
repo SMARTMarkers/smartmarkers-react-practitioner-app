@@ -1,14 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { List, ListItem, Text, View, Body, Icon, Left, Button } from 'native-base'
-import {
-  IPatient,
-  PatientList,
-  NameUse,
-  IHumanName,
-  AdministrativeGender,
-  useFhirContext,
-  Server,
-} from 'smartmarkers-lib'
+import { List, ListItem, Text, View, Icon, Button } from 'native-base'
+import { IPatient, useFhirContext, Server } from 'smartmarkers-lib'
 
 import ResponseView from '../components/ResponseView'
 import { ScrollView } from 'react-native'
@@ -17,57 +9,9 @@ import { Switch, Route, useHistory, useParams } from 'react-router-dom'
 import RequestList from '../components/RequestList'
 import ReportList from '../components/ReportList'
 import FhirResource from '../components/FhirResource'
-
-function _calculateAge(birthday: Date) {
-  var ageDifMs = Date.now() - birthday.getTime()
-  var ageDate = new Date(ageDifMs)
-  const yrs = Math.abs(ageDate.getUTCFullYear() - 1970)
-  const mths = Math.abs(ageDate.getUTCMonth())
-
-  if (!mths) return `${yrs} yrs`
-  return `${yrs} yrs, ${mths} mths`
-}
-
-const getHumanNameString = (humanName: IHumanName) => {
-  return (humanName.given?.concat(' ') + ' ' + (humanName.family ? humanName.family : '')).trim()
-}
-
-const getPatientName = (patient: IPatient) => {
-  if (patient && patient.name && patient.name.length > 0) {
-    if (patient.name.length == 1) {
-      return getHumanNameString(patient.name[0])
-    } else {
-      const nameOfficial = patient.name.find(item => item.use && item.use == NameUse.Official)
-      if (nameOfficial) {
-        return getHumanNameString(nameOfficial)
-      } else {
-        const nameUsual = patient.name.find(item => item.use && item.use == NameUse.Usual)
-        if (nameUsual) {
-          return getHumanNameString(nameUsual)
-        } else {
-          return getHumanNameString(patient.name[0])
-        }
-      }
-    }
-  }
-  return ''
-}
-
-const getGenderIcon = (gender?: AdministrativeGender) => {
-  let iconName: string = ''
-  let color: string = ''
-  if (gender === AdministrativeGender.Male) {
-    iconName = 'male'
-    color = '#72cef4'
-  } else if (gender === AdministrativeGender.Female) {
-    iconName = 'female'
-    color = '#f98bc9'
-  }
-
-  if (!iconName) return null
-
-  return <Icon style={{ fontSize: 22, width: 'auto', color }} active name={iconName} />
-}
+import PatientList from '../components/PatientList'
+import { getPatientName } from '../utils'
+import { StyleSheet } from 'react-native'
 
 const getPatient = async (patientId: string, callback: any, server?: Server) => {
   const patients = await server?.getPatients(`_id=${patientId}`)
@@ -96,90 +40,23 @@ const DashboardScreen: React.FC<any> = () => {
     [setSelectedPatient]
   )
 
-  const renderItem = (item: IPatient, key: any) => {
-    return (
-      <ListItem
-        underlayColor="#083892"
-        style={{
-          paddingLeft: 10,
-          paddingRight: 10,
-          borderRadius: 10,
-        }}
-        key={item.id}
-        onPress={() => onItemPress(item)}
-        noBorder
-      >
-        <Left
-          style={{
-            height: 38,
-            maxWidth: 38,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: '50%',
-            borderColor: '#72cef4',
-            borderWidth: 2,
-            borderStyle: 'solid',
-          }}
-        >
-          {getGenderIcon(item.gender)}
-        </Left>
-        <Body>
-          <Text style={{ color: 'white' }}>{getPatientName(item)}</Text>
-          <Text style={{ color: '#6e86b5' }} note>
-            {_calculateAge(new Date(item.birthDate?.toString() || ''))}
-          </Text>
-        </Body>
-      </ListItem>
-    )
-  }
-
   const onCreateNewRequest = () =>
     history.push(`/create-new-service-request/${selectedPatient!.id}`)
 
   return (
-    <View
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: '#002a78',
-      }}
-    >
-      <List style={{ paddingLeft: 0, maxWidth: 370, minWidth: 240 }}>
+    <View style={styles.container}>
+      <List style={styles.patientsSection}>
         <ListItem itemHeader>
-          <Text style={{ color: 'white', fontSize: 24, textAlign: 'center', width: '100%' }}>
-            PATIENTS
-          </Text>
+          <Text style={styles.patientsHeader}>PATIENTS</Text>
         </ListItem>
-        <ScrollView style={{ height: 'calc(100vh - 118px)' }}>
-          <PatientList filter={''} onItemPress={onItemPress} renderItem={renderItem} />
+        <ScrollView style={styles.patientsScrollView}>
+          <PatientList filter={''} onItemPress={onItemPress} />
         </ScrollView>
       </List>
-      <View
-        style={{
-          flexGrow: 1,
-          backgroundColor: 'white',
-          alignSelf: 'stretch',
-          borderRadius: 20,
-          margin: '20px',
-          marginTop: 15,
-          overflow: 'hidden',
-          padding: 20,
-        }}
-      >
-        <View
-          style={{
-            display: 'flex',
-            width: '100%',
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-          }}
-        >
+      <View style={styles.content}>
+        <View style={styles.contentHeader}>
           {selectedPatient && (
-            <View
-              style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', width: '100%' }}
-            >
+            <>
               {backArrowIsVisible && (
                 <Button transparent onPress={() => history.goBack()}>
                   <Icon
@@ -188,24 +65,22 @@ const DashboardScreen: React.FC<any> = () => {
                   />
                 </Button>
               )}
-              <Text style={{ fontSize: 24, fontWeight: 'bold', flexGrow: 1, color: '#002a78' }}>
-                {getPatientName(selectedPatient)}
-              </Text>
-              <Button
-                onPress={onCreateNewRequest}
-                style={{
-                  width: 'max-content',
-                  alignSelf: 'flex-end',
-                  flexGrow: 0,
-                  backgroundColor: '#002a78',
-                }}
-              >
+              <View style={{ flexGrow: 2 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', flexGrow: 1, color: '#002a78' }}>
+                  {getPatientName(selectedPatient)}
+                </Text>
+                <Text note>
+                  {`GEN: ${selectedPatient.gender} DOB: ${selectedPatient.birthDate}`}
+                </Text>
+                <Text note>{`MRN: ${selectedPatient.id}`}</Text>
+              </View>
+              <Button onPress={onCreateNewRequest} style={styles.newRequestButton}>
                 <Text>New request</Text>
               </Button>
-            </View>
+            </>
           )}
         </View>
-        <ScrollView style={{ height: 'calc(100vh - 176px)', padding: 10 }}>
+        <ScrollView style={styles.contentScrollView}>
           <Switch>
             <Route exact path="/dashboard/:patientId">
               <RequestList />
@@ -230,3 +105,40 @@ const DashboardScreen: React.FC<any> = () => {
 }
 
 export default DashboardScreen
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    backgroundColor: '#002a78',
+  },
+  patientsSection: { paddingLeft: 0, maxWidth: 370, minWidth: 240 },
+  patientsScrollView: { height: 'calc(100vh - 118px)' },
+  patientsHeader: { color: 'white', fontSize: 24, textAlign: 'center', width: '100%' },
+  content: {
+    flexGrow: 1,
+    backgroundColor: 'white',
+    alignSelf: 'stretch',
+    borderRadius: 20,
+    margin: '20px',
+    marginTop: 15,
+    overflow: 'hidden',
+    padding: 20,
+  },
+  contentScrollView: { height: 'calc(100vh - 176px)', padding: 10 },
+  contentHeader: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingBottom: 15,
+  },
+  newRequestButton: {
+    width: 'max-content',
+    alignSelf: 'center',
+    flexGrow: 0,
+    backgroundColor: '#002a78',
+  },
+})

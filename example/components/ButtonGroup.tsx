@@ -19,29 +19,9 @@ const ButtonGroup: React.FC<ButtonGroupProps<any>> = props => {
     }
   }
 
-  const segmentStyle: any = {
-    backgroundColor: 'transparent',
-  }
-
-  const buttonStyle: any = {
-    backgroundColor: '#002a78',
-    color: 'white',
-  }
-
-  segmentStyle.flexDirection = 'column'
-  segmentStyle.height = 'auto'
-  segmentStyle.alignItems = 'center'
-  segmentStyle.alignSelf = 'center'
-  segmentStyle.width = 'max-content'
-
-  buttonStyle.marginBottom = 5
-  buttonStyle.width = '100%'
-  buttonStyle.display = 'flex'
-  buttonStyle.justifyContent = 'center'
-
   return (
     <View style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-      <Segment style={segmentStyle}>
+      <Segment style={styles.segment}>
         {items.map((item, index) => (
           <Button
             light
@@ -86,5 +66,13 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderRightWidth: 1,
     borderBottomWidth: 1,
+  },
+  segment: {
+    backgroundColor: 'transparent',
+    flexDirection: 'column',
+    height: 'auto',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: 'max-content',
   },
 })

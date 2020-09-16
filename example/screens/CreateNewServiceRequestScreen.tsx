@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { List, ListItem, Text, Body, Spinner, View, Button, Right, Icon, Footer } from 'native-base'
+import { ListItem, Text, Body, Spinner, Button, Right, Icon } from 'native-base'
 import { useFhirContext, TaskSchedule, Instrument } from 'smartmarkers-lib'
 import { ScrollView } from 'react-native'
 import { useParams, useHistory } from 'react-router-dom'
 import InstrumentSelectorModal from '../components/InstrumentSelectorModal'
 import TaskScheduleForm from '../components/TaskScheduleForm'
+import { StyleSheet } from 'react-native'
 
 interface RouteParams {
   patientId: string
@@ -27,22 +28,10 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
       setSelectedInstruments(newArr)
     }
     return (
-      <ListItem
-        key={key}
-        underlayColor="white"
-        style={{
-          backgroundColor: '#f0f2f8',
-          borderRadius: 10,
-          marginBottom: 3,
-          paddingLeft: 15,
-          paddingRight: 15,
-          marginLeft: 0,
-          marginRight: 0,
-        }}
-      >
+      <ListItem key={key} underlayColor="white" style={styles.listItem}>
         <Body>
-          <Text style={{ color: '#002a78', fontWeight: 'bold' }}>{item.getTitle()}</Text>
-          <Text note style={{ color: '#a4a5a6' }}>
+          <Text style={styles.title}>{item.getTitle()}</Text>
+          <Text note style={styles.note}>
             {item.getNote()}
           </Text>
         </Body>
@@ -100,3 +89,17 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
 }
 
 export default CreateNewServiceRequestScreen
+
+const styles = StyleSheet.create({
+  listItem: {
+    backgroundColor: '#f0f2f8',
+    borderRadius: 10,
+    marginBottom: 3,
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginLeft: 0,
+    marginRight: 0,
+  },
+  title: { color: '#002a78', fontWeight: 'bold' },
+  note: { color: '#a4a5a6' },
+})

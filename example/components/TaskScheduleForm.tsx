@@ -5,6 +5,7 @@ import { GroupItem, DateTime } from 'smartmarkers-lib/dist/components/inputs'
 import { View } from 'native-base'
 
 import ButtonGroup from '../components/ButtonGroup'
+import { StyleSheet } from 'react-native'
 
 export interface TaskScheduleFormProps {
   schedule?: TaskSchedule
@@ -157,50 +158,33 @@ const TaskScheduleForm = (props: TaskScheduleFormProps) => {
 
   return (
     <NativeBaseForm testID="taskScheduleForm">
-      <Item bordered={false} style={{ paddingTop: 15, paddingBottom: 15 }}>
-        <Label style={{ width: '100%', textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}>
-          TIMING
-        </Label>
+      <Item bordered={false} style={styles.headerItem}>
+        <Label style={styles.headerText}>TIMING</Label>
       </Item>
-      <Item style={{ justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
+      <Item style={styles.containerItem}>
         <Label style={{ flexShrink: 0, width: 120 }}>Shedule Type</Label>
-        <View
-          style={{ width: 100, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-        >
+        <View style={styles.buttonGroupWrapper}>
           <ButtonGroup value={scheduleType} items={sheduleTypes} onChange={onScheduleTypeChange} />
         </View>
       </Item>
-      <Item style={{ justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
+      <Item style={styles.containerItem}>
         <Label style={{ flexShrink: 0, width: 120 }}>Preffered Day</Label>
-        <View
-          style={{ width: 100, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
-        >
+        <View style={styles.buttonGroupWrapper}>
           <ButtonGroup value={prefferedDay} items={weekDays} onChange={onPrefferedDayChange} />
         </View>
       </Item>
-      <Item bordered={false} style={{ paddingTop: 15, paddingBottom: 15 }}>
-        <Label style={{ width: '100%', textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}>
-          PERIOD
-        </Label>
+      <Item bordered={false} style={styles.headerItem}>
+        <Label style={styles.headerText}>PERIOD</Label>
       </Item>
-      <Item
-        picker={true}
-        style={{ justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}
-      >
+      <Item picker={true} style={styles.containerItem}>
         <Label style={{ width: 90 }}>Start Date</Label>
         <DateTime value={startDate} minDate={new Date()} onChange={onStartDateChange} />
       </Item>
-      <Item
-        picker={true}
-        style={{ justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}
-      >
+      <Item picker={true} style={styles.containerItem}>
         <Label style={{ width: 90 }}>End Date</Label>
         <DateTime value={endDate} minDate={startDate} onChange={onEndDateChange} />
       </Item>
-      <Item
-        bordered={false}
-        style={{ borderWidth: 0, paddingBottom: 15, paddingTop: 15, justifyContent: 'center' }}
-      >
+      <Item bordered={false} style={styles.submitButtonWrapper}>
         <Button
           style={{ backgroundColor: '#499f67' }}
           testID="submitButton"
@@ -215,3 +199,21 @@ const TaskScheduleForm = (props: TaskScheduleFormProps) => {
 }
 
 export default TaskScheduleForm
+
+const styles = StyleSheet.create({
+  headerItem: { paddingTop: 15, paddingBottom: 15 },
+  headerText: { width: '100%', textAlign: 'center', fontSize: 20, fontWeight: 'bold' },
+  containerItem: { justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 },
+  buttonGroupWrapper: {
+    width: 100,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  submitButtonWrapper: {
+    borderWidth: 0,
+    paddingBottom: 15,
+    paddingTop: 15,
+    justifyContent: 'center',
+  },
+})

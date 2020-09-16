@@ -1,13 +1,8 @@
-import React, { useCallback } from 'react'
-import {
-  ReportList as SmartReportList,
-  TaskScheduleStatus,
-  Task,
-  ReportType,
-  Report,
-} from 'smartmarkers-lib'
+import React from 'react'
+import { ReportList as SmartReportList, ReportType, Report } from 'smartmarkers-lib'
 import { useHistory, useParams } from 'react-router-dom'
-import { ListItem, Body, View, Right, Icon, Text } from 'native-base'
+import { ListItem, Body, Right, Icon, Text } from 'native-base'
+import { StyleSheet } from 'react-native'
 
 interface RouteParams {
   patientId: string
@@ -23,20 +18,10 @@ const ReportList = () => {
   }
 
   const renderItem = (item: Report, key: any) => (
-    <ListItem
-      key={item.id}
-      onPress={() => onPress(item)}
-      style={{
-        backgroundColor: '#f0f2f8',
-        borderRadius: 10,
-        marginBottom: 3,
-        paddingLeft: 15,
-        paddingRight: 15,
-      }}
-    >
+    <ListItem key={item.id} onPress={() => onPress(item)} style={styles.listItem}>
       <Body>
-        <Text style={{ color: '#002a78', fontWeight: 'bold' }}>{item.getTitle()}</Text>
-        <Text note style={{ color: '#a4a5a6' }}>
+        <Text style={styles.title}>{item.getTitle()}</Text>
+        <Text note style={styles.note}>
           {item.getNote()}
         </Text>
       </Body>
@@ -58,3 +43,15 @@ const ReportList = () => {
 }
 
 export default ReportList
+
+const styles = StyleSheet.create({
+  listItem: {
+    backgroundColor: '#f0f2f8',
+    borderRadius: 10,
+    marginBottom: 3,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  title: { color: '#002a78', fontWeight: 'bold' },
+  note: { color: '#a4a5a6' },
+})

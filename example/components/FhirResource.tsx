@@ -1,13 +1,7 @@
 import React from 'react'
-import { View, Text, Spinner, ListItem, Body, List, Right, Icon } from 'native-base'
-import {
-  useFhirContext,
-  Report,
-  QuestionnaireResponse,
-  QuestionnaireResponseView,
-  FhirResourceView,
-} from 'smartmarkers-lib'
-import { useHistory, useParams } from 'react-router-dom'
+import { Spinner } from 'native-base'
+import { useFhirContext, Report, QuestionnaireResponse, FhirResourceView } from 'smartmarkers-lib'
+import { useParams } from 'react-router-dom'
 
 interface RouteParams {
   reportId: string
