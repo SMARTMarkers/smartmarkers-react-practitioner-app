@@ -14,7 +14,12 @@ Platform:
   linux x64
 
 Trace: 
-  Error: ENOENT: no such file or directory, copyfile '/home/antony/work/practitioner-app/example-patient/node_modules/.yarn-integrity' -> '/home/antony/.cache/yarn/v6/npm-smartmarkers-lib-1.0.0-6aeea3d6-dd6c-4dbd-aa01-2ff84828f95f-1599847277749/node_modules/smartmarkers-lib/example-patient/node_modules/.yarn-integrity'
+  SyntaxError: /home/antony/work/practitioner-app/example/package.json: Unexpected token } in JSON at position 944
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {

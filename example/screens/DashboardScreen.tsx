@@ -49,9 +49,13 @@ const DashboardScreen: React.FC<any> = () => {
         <ListItem itemHeader>
           <Text style={styles.patientsHeader}>PATIENTS</Text>
         </ListItem>
-        <ScrollView style={styles.patientsScrollView}>
-          <PatientList filter={''} onItemPress={onItemPress} />
-        </ScrollView>
+        <View style={styles.patientsScrollView}>
+          <PatientList
+            selectedPatientId={selectedPatient?.id}
+            filter={''}
+            onItemPress={onItemPress}
+          />
+        </View>
       </List>
       <View style={styles.content}>
         <View style={styles.contentHeader}>
@@ -112,6 +116,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     backgroundColor: '#002a78',
+    maxWidth: '100vw',
+    height: 'calc(100vh - 56px)',
   },
   patientsSection: { paddingLeft: 0, maxWidth: 370, minWidth: 240 },
   patientsScrollView: { height: 'calc(100vh - 118px)' },
@@ -125,8 +131,9 @@ const styles = StyleSheet.create({
     marginTop: 15,
     overflow: 'hidden',
     padding: 20,
+    width: 'min-content',
   },
-  contentScrollView: { height: 'calc(100vh - 176px)', padding: 10 },
+  contentScrollView: { height: 'calc(100vh - 176px)', padding: 10, maxWidth: '100%' },
   contentHeader: {
     display: 'flex',
     width: '100%',

@@ -17,5 +17,6 @@ dist
 # macOS
 .DS_Store
 example-patient/**/*
+example-patient-app/**/*
 
 coverage

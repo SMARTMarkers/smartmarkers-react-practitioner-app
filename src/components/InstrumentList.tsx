@@ -1,5 +1,7 @@
 import React from "react";
 import { Spinner, ListItem, Body, Right, Text, Icon } from "native-base";
+import { FlatList, ListRenderItemInfo } from "react-native";
+
 import { useFhirContext } from "../context";
 import { Instrument, InstrumentType } from "../instruments/Instrument";
 
@@ -14,10 +16,19 @@ export interface InstrumentListProps {
   ) => React.ReactNode;
   onItemPress: (item: Instrument) => void;
   patientId?: string;
+  selectedArr?: Array<Instrument>;
 }
 
 export const InstrumentList: React.FC<InstrumentListProps> = (props) => {
-  const { type, renderItem, filter, onItemPress, usePromis, patientId } = props;
+  const {
+    type,
+    renderItem,
+    filter,
+    onItemPress,
+    usePromis,
+    patientId,
+    selectedArr,
+  } = props;
   const [isReady, setIsReady] = React.useState(false);
   const [items, setItems] = React.useState<Instrument[] | undefined>([]);
   const { server, proimisServer } = useFhirContext();
@@ -50,8 +61,24 @@ export const InstrumentList: React.FC<InstrumentListProps> = (props) => {
     loadItems();
   }, [patientId]);
 
+  const renderItemFunc = ({ item, index }: ListRenderItemInfo<Instrument>) => {
+    const elements: React.ReactElement = render(
+      item,
+      index,
+      onItemPress
+    ) as React.ReactElement;
+    return elements || null;
+  };
+
   if (!isReady) {
     return <Spinner />;
   }
-  return <>{items?.map((item, index) => render(item, index, onItemPress))}</>;
+  return (
+    <FlatList
+      data={items || []}
+      renderItem={renderItemFunc}
+      keyExtractor={(item) => item.id}
+      extraData={selectedArr}
+    />
+  );
 };

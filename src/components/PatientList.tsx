@@ -8,6 +8,7 @@ export interface PatientListProps {
   filter?: string;
   renderItem?: (item: IPatient, key: any) => React.ReactNode;
   onItemPress: (item: IPatient) => void;
+  selectedId?: string;
 }
 
 const getHumanNameString = (humanName: IHumanName) => {
@@ -44,7 +45,7 @@ const getPatientName = (patient: IPatient) => {
 };
 
 export const PatientList: React.FC<PatientListProps> = (props) => {
-  const { renderItem, filter, onItemPress } = props;
+  const { renderItem, filter, onItemPress, selectedId } = props;
   const [isReady, setIsReady] = React.useState(false);
   const [items, setItems] = React.useState<IPatient[] | undefined>([]);
   const { server } = useFhirContext();
@@ -91,7 +92,14 @@ export const PatientList: React.FC<PatientListProps> = (props) => {
   };
 
   if (items?.length) {
-    return <FlatList data={items || []} renderItem={renderItemFunc} />;
+    return (
+      <FlatList
+        data={items || []}
+        renderItem={renderItemFunc}
+        keyExtractor={(item) => item.id}
+        extraData={selectedId}
+      />
+    );
   } else {
     return (
       <ListItem>

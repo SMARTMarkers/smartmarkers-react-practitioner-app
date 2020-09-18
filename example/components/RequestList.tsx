@@ -17,7 +17,13 @@ const RequestList = () => {
 
   const renderRequestListItem = useCallback(
     (item: Task, key: any, onItemPress: (item: Task) => void, isLast: boolean) => (
-      <ListItem key={key} onPress={() => onItemPress(item)} noBorder style={styles.listItem}>
+      <ListItem
+        key={key}
+        underlayColor="transparent"
+        onPress={() => onItemPress(item)}
+        noBorder
+        style={styles.listItem}
+      >
         <Body>
           <Text style={styles.title}>{item.getTitle()}</Text>
           <Text note style={styles.note}>
@@ -52,6 +58,7 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     paddingLeft: 15,
     paddingRight: 15,
+    marginLeft: 0,
   },
   title: { color: '#002a78', fontWeight: 'bold' },
   note: { color: '#a4a5a6' },

@@ -9,7 +9,7 @@ export interface ReportListProps {
   filter?: string;
   renderItem?: (item: Report, key: any) => React.ReactNode;
   onItemPress: (item: Report) => void;
-  useClientPatientId: boolean;
+  useClientPatientId?: boolean;
 }
 
 export const ReportList: React.FC<ReportListProps> = (props) => {

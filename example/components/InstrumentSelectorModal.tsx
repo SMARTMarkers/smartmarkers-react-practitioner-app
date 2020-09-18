@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { ListItem, Text, Body, View, Button, Right, Icon } from 'native-base'
+import { ListItem, Text, Body, View, Button, Right, Icon, Tabs, Tab } from 'native-base'
 import { Instrument, InstrumentType, InstrumentList } from 'smartmarkers-lib'
 import { Modal } from '../tools/Modal'
-import { ScrollView, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 interface InstrumentSelectorModalProps {
   patientId: string
@@ -20,6 +20,8 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
   instruments,
 }) => {
   const [selectedInstruments, setSelectedInstruments] = useState<Instrument[]>(instruments)
+
+  const [maxHeight, setMaxHeight] = useState(200)
 
   useEffect(() => {
     setSelectedInstruments(instruments)
@@ -61,6 +63,10 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
     closeModal()
   }
 
+  const getHeight = (layout: any) => {
+    layout && layout.height && setMaxHeight(layout.height - 100)
+  }
+
   return (
     <Modal animationType="fade" animated transparent visible={isOpen}>
       <View style={styles.container}>
@@ -68,14 +74,53 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
           <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>
             Select instruments
           </Text>
-          <ScrollView style={{ width: '100%', flexGrow: 1 }}>
-            <InstrumentList
-              type={InstrumentType.Questionnaire}
-              onItemPress={onPress}
-              patientId={patientId}
-              renderItem={renderItem}
-            />
-          </ScrollView>
+          <View
+            onLayout={(event: any) => getHeight(event.nativeEvent.layout)}
+            style={{ width: '100%', flexGrow: 1, maxHeight: 'calc(100% - 120px)' }}
+          >
+            <Tabs
+              contentProps={{ style: { maxHeight: '100%' } }}
+              tabContainerStyle={{ maxHeight: '100%' }}
+              style={{ maxHeight: '100%' }}
+            >
+              <Tab
+                activeTabStyle={{ backgroundColor: '#083892' }}
+                tabStyle={{ backgroundColor: '#002a78' }}
+                heading="Questioners"
+              >
+                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>
+                  Questionnaires
+                </Text>
+                <View style={{ maxHeight }}>
+                  <InstrumentList
+                    type={InstrumentType.Questionnaire}
+                    onItemPress={onPress}
+                    patientId={patientId}
+                    renderItem={renderItem}
+                    selectedArr={selectedInstruments}
+                  />
+                </View>
+              </Tab>
+              <Tab
+                activeTabStyle={{ backgroundColor: '#083892', maxHeight: '100%' }}
+                tabStyle={{ backgroundColor: '#002a78', maxHeight: '100%' }}
+                heading="Promises"
+              >
+                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>Promises</Text>
+                <View style={{ maxHeight }}>
+                  <InstrumentList
+                    type={InstrumentType.Questionnaire}
+                    onItemPress={onPress}
+                    patientId={patientId}
+                    renderItem={renderItem}
+                    usePromis
+                    filter={'_summary=true'}
+                    selectedArr={selectedInstruments}
+                  />
+                </View>
+              </Tab>
+            </Tabs>
+          </View>
           <View style={styles.buttonsGroup}>
             <Button style={{ backgroundColor: '#499f67' }} onPress={onSelectAll}>
               <Text>select</Text>
