@@ -48,19 +48,31 @@ export const ButtonGroup: React.FC<ButtonGroupProps<any>> = (props) => {
   return (
     <View style={{ display: "flex", justifyContent: "center", width: "100%" }}>
       <Segment style={segmentStyle}>
-        {items.map((item, index) => (
-          <Button
-            light
-            key={index}
-            first={index === 0}
-            active={item.value == value}
-            last={index === items.length - 1}
-            onPress={onPress(item.value)}
-            style={buttonStyle}
-          >
-            <Text>{item.label}</Text>
-          </Button>
-        ))}
+        {items.map((item, index) => {
+          let active = false;
+          if (value && !!value.length) {
+            active = value.includes(item.value);
+          } else {
+            if (item.value && value && item.value.display === value.display) {
+              active = item.value.display === value.display;
+            } else {
+              item.value == value;
+            }
+          }
+          return (
+            <Button
+              light
+              key={index}
+              first={index === 0}
+              active={active}
+              last={index === items.length - 1}
+              onPress={onPress(item.value)}
+              style={buttonStyle}
+            >
+              <Text>{item.label}</Text>
+            </Button>
+          );
+        })}
         {hasError && <Icon name="close-circle" />}
       </Segment>
     </View>

@@ -94,7 +94,26 @@ export const ChoiceField: React.FC<ChoiceFieldProps> = (props) => {
   const { item, id, questionsLayout, ...propsToPass } = props;
   const choiceType = calculateChoiceType(item);
   const onChange = (value: any) => {
-    const newFormData = setFormValue(props.formData, item.linkId, value);
+    const { value: oldValue } = getFormValue(props.formData, item.linkId);
+    let newValue: any = null;
+    if (!!item.repeats) {
+      if (oldValue) {
+        const filterArr = oldValue.filter((el: any) => {
+          return el !== value;
+        });
+        if (filterArr.length < oldValue.length) {
+          newValue = filterArr;
+        } else {
+          newValue = [...oldValue, value];
+        }
+      } else {
+        newValue = [value];
+      }
+    } else {
+      newValue = value;
+    }
+
+    const newFormData = setFormValue(props.formData, item.linkId, newValue);
     if (props.onChange) {
       props.onChange(newFormData, item.linkId);
     }

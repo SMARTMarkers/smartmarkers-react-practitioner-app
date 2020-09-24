@@ -5,6 +5,7 @@ import {
   IQuestionnaireResponseItemAnswer,
 } from "..";
 import { QuestionnaireResponse } from "../reports";
+import { ScrollView } from "react-native";
 
 export interface QuestionnaireResponseViewProps {
   response: QuestionnaireResponse;
@@ -94,9 +95,24 @@ export const QuestionnaireResponseView: React.FC<QuestionnaireResponseViewProps>
     return listOfElements;
   }, []);
 
+  const getGroups = () => {
+    const groupedAnswers: any = {};
+    list.forEach((el: QuestionWithAnswer) => {
+      const group = groupedAnswers[el.question];
+      if (group) {
+        groupedAnswers[el.question] = [...group, el.answer];
+      } else {
+        groupedAnswers[el.question] = [el.answer];
+      }
+    });
+    return groupedAnswers;
+  };
+
   const list = useMemo(() => getList(response), [response]);
 
   if (!response.item) return null;
+
+  const groups = getGroups();
 
   return (
     <List>
@@ -105,14 +121,18 @@ export const QuestionnaireResponseView: React.FC<QuestionnaireResponseViewProps>
           <Text>QUESTIONS &amp; ANSWERS</Text>
         </Body>
       </ListItem>
-      {list.map((el: QuestionWithAnswer) => (
-        <ListItem>
-          <Body>
-            <Text>{el.answer}</Text>
-            <Text note>{el.question}</Text>
-          </Body>
-        </ListItem>
-      ))}
+      <ScrollView>
+        {Object.keys(groups).map((key: string) => (
+          <ListItem key={key}>
+            <Body>
+              {groups[key].map((answer: string) => (
+                <Text key={answer}>{answer}</Text>
+              ))}
+              <Text note>{key}</Text>
+            </Body>
+          </ListItem>
+        ))}
+      </ScrollView>
     </List>
   );
 };
