@@ -18,6 +18,7 @@ export interface QuestionnaireFieldProps {
   onFocus?: Function;
   onBlur?: Function;
   questionsLayout?: QuestionsLayout;
+  quitWithErrorMessage: (error: string) => void;
 }
 
 export const QuestionnaireField: React.FC<QuestionnaireFieldProps> = (

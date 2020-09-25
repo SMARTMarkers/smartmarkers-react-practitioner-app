@@ -19,4 +19,5 @@ export interface BaseFieldProps {
   onFocus?: Function;
   onBlur?: Function;
   questionsLayout?: QuestionsLayout;
+  quitWithErrorMessage?: (error: string) => void;
 }

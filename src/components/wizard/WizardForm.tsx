@@ -31,6 +31,7 @@ export interface WizardFormProps {
   onFocus?: Function;
   onBlur?: Function;
   questionsLayout?: QuestionsLayout;
+  quitWithErrorMessage: (error: string) => void;
 }
 
 export type EnumDictionary<T extends string | symbol | number, U> = {
@@ -38,7 +39,7 @@ export type EnumDictionary<T extends string | symbol | number, U> = {
 };
 
 export const WizardForm: React.FC<WizardFormProps> = (props) => {
-  const { questionnaire, mode } = props;
+  const { questionnaire, mode, quitWithErrorMessage } = props;
   const isAdaptive = mode == FormMode.Adaptive;
   const [formData, setFormData] = React.useState<any>(
     props.formData ? props.formData : {}
@@ -154,6 +155,7 @@ export const WizardForm: React.FC<WizardFormProps> = (props) => {
         onFocus={onFocus}
         onSubmit={onSubmit}
         questionsLayout={props.questionsLayout}
+        quitWithErrorMessage={quitWithErrorMessage}
       />
       {!isFirst && !isAdaptive && (
         <Button onPress={onPrev}>

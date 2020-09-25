@@ -177,28 +177,73 @@ export const getLabel = (item: IQuestionnaireItem) => {
   return "";
 };
 
-export const extractChoices = <
+export const extractChoices = async <
   T extends { label: string; value: any } = GroupItem<any>
 >(
-  item: IQuestionnaireItem
+  item: IQuestionnaireItem,
+  questionnaire: IQuestionnaire,
+  quitWithErrorMessage?: (error: string) => void
 ) => {
-  if (!item.answerOption) return DEFAULT_CHOICES as T[];
-
-  return item.answerOption.map((option) => {
-    if (option.valueCoding) {
-      return {
-        value: option.valueCoding,
-        label: option.valueCoding.display,
-      } as T;
-    } else if (option.valueString) {
-      return {
-        value: { display: option.valueString, value: option.valueString },
-        label: option.valueString,
-      } as T;
-    } else {
-      return { value: "NoOptions", label: "NoOptions" } as T;
+  const answerValueSet = (item.answerValueSet as unknown) as string;
+  if (answerValueSet) {
+    if (answerValueSet === "http://hl7.org/fhir/ValueSet/yesnodontknow") {
+      return DEFAULT_CHOICES as T[];
     }
-  });
+
+    if (answerValueSet.startsWith("#")) {
+      const set = questionnaire.contained?.filter(
+        (el: any) =>
+          el.resourceType === "ValueSet" &&
+          item.answerValueSet &&
+          el.id === ((item.answerValueSet as any) as string).slice(1)
+      )[0];
+      if (set) {
+        return (set as any).compose.include[0].concept.map((option: any) => {
+          return {
+            value: option,
+            label: option.display,
+          } as T;
+        });
+      }
+    }
+
+    if (answerValueSet.startsWith("http://")) {
+      try {
+        const res: any = await fetch(answerValueSet);
+        const json = await res.json();
+        return json.compose.include[0].concept.map((option: any) => {
+          return {
+            value: option,
+            label: option.display,
+          } as T;
+        });
+      } catch (e) {
+        quitWithErrorMessage && quitWithErrorMessage("Loading valueSet failed");
+        return;
+      }
+    }
+  }
+
+  if (item.answerOption) {
+    return item.answerOption.map((option) => {
+      if (option.valueCoding) {
+        return {
+          value: option.valueCoding,
+          label: option.valueCoding.display,
+        } as T;
+      } else if (option.valueString) {
+        return {
+          value: { display: option.valueString, value: option.valueString },
+          label: option.valueString,
+        } as T;
+      } else {
+        return { value: "NoOptions", label: "NoOptions" } as T;
+      }
+    });
+  }
+
+  quitWithErrorMessage && quitWithErrorMessage("Invalid questionnaire");
+  return DEFAULT_CHOICES as T[];
 };
 
 export const getResponse = (

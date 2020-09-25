@@ -23,6 +23,7 @@ export interface QuestionnaireItemFieldsProps {
   onFocus?: Function;
   onBlur?: Function;
   questionsLayout?: QuestionsLayout;
+  quitWithErrorMessage?: (error: string) => void;
 }
 
 export const QuestionnaireItemFields: React.FC<QuestionnaireItemFieldsProps> = (

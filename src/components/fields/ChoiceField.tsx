@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "native-base";
 import { BaseFieldProps } from "./BaseFieldProps";
 import { QuestionnaireItemFields } from "./QuestionnaireItemFields";
-import { IQuestionnaireItem } from "../../models";
+import { IQuestionnaireItem, IQuestionnaire } from "../../models";
 import { setFormValue, getLabel, getFormValue, extractChoices } from "./utils";
 import { DropDown, ButtonGroup } from "../inputs";
 import { Autocomplete } from "../inputs/Autocomplete";
@@ -61,18 +61,24 @@ const calculateChoiceType = (item: IQuestionnaireItem): ChoiceType => {
   }
 };
 
-const renderChoice = (
+const renderChoice = async (
   type: ChoiceType,
   item: IQuestionnaireItem,
   onChange: (value: any) => void,
   value: any,
+  questionnaire: IQuestionnaire,
+  quitWithErrorMessage?: (error: string) => void,
   questionsLayout?: QuestionsLayout
 ) => {
   if (type === ChoiceType.Autocomplete) {
     return renderAutocomplete(item, onChange, value);
   }
 
-  const choices = extractChoices(item);
+  const choices = await extractChoices(
+    item,
+    questionnaire,
+    quitWithErrorMessage
+  );
 
   if (type === ChoiceType.DropDown) {
     return <DropDown items={choices} onChange={onChange} value={value} />;
@@ -91,8 +97,17 @@ const renderChoice = (
 export interface ChoiceFieldProps extends BaseFieldProps {}
 
 export const ChoiceField: React.FC<ChoiceFieldProps> = (props) => {
-  const { item, id, questionsLayout, ...propsToPass } = props;
+  const {
+    item,
+    id,
+    questionsLayout,
+    questionnaire,
+    quitWithErrorMessage,
+    ...propsToPass
+  } = props;
+  const [choices, setChoices] = useState(null);
   const choiceType = calculateChoiceType(item);
+
   const onChange = (value: any) => {
     const { value: oldValue } = getFormValue(props.formData, item.linkId);
     let newValue: any = null;
@@ -119,11 +134,41 @@ export const ChoiceField: React.FC<ChoiceFieldProps> = (props) => {
     }
   };
   const { value } = getFormValue(props.formData, item.linkId);
+  const getElements = async () => {
+    const elements: any = await renderChoice(
+      choiceType,
+      item,
+      onChange,
+      value,
+      questionnaire,
+      quitWithErrorMessage,
+      questionsLayout
+    );
+    setChoices(elements);
+  };
+  useEffect(() => {
+    getElements();
+  }, [
+    choiceType,
+    item,
+    props.onChange,
+    value,
+    questionnaire,
+    quitWithErrorMessage,
+    questionsLayout,
+  ]);
+
   return (
     <View>
       <Text>{getLabel(item)}</Text>
-      {renderChoice(choiceType, item, onChange, value, questionsLayout)}
-      <QuestionnaireItemFields items={item.item} {...propsToPass} />
+      {choices}
+      <QuestionnaireItemFields
+        quitWithErrorMessage={quitWithErrorMessage}
+        questionnaire={questionnaire}
+        questionsLayout={questionsLayout}
+        items={item.item}
+        {...propsToPass}
+      />
     </View>
   );
 };
