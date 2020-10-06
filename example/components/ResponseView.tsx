@@ -6,7 +6,7 @@ import {
   QuestionnaireResponse,
   QuestionnaireResponseView,
 } from 'smartmarkers-lib'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from '../react-router'
 
 interface RouteParams {
   reportId: string
@@ -44,8 +44,8 @@ const ResponseView: React.FC<any> = () => {
       {item && item.resourceType === 'QuestionnaireResponse' && (
         <QuestionnaireResponseView response={item as QuestionnaireResponse} />
       )}
-      <List>
-        <ListItem style={{ marginTop: '30px', borderTopWidth: 1 }} onPress={goToFhirResource}>
+      <List style={{ paddingTop: 30 }}>
+        <ListItem style={{ borderTopWidth: 1 }} onPress={goToFhirResource}>
           <Body>
             <Text>FHIR Resource</Text>
           </Body>

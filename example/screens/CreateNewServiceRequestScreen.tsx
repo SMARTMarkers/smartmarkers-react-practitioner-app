@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { ListItem, Text, Body, Spinner, Button, Right, Icon } from 'native-base'
 import { useFhirContext, TaskSchedule, Instrument } from 'smartmarkers-lib'
 import { ScrollView } from 'react-native'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory } from '../react-router'
 import InstrumentSelectorModal from '../components/InstrumentSelectorModal'
 import TaskScheduleForm from '../components/TaskScheduleForm'
 import { StyleSheet } from 'react-native'
+import { Platform, Dimensions } from 'react-native'
 
 interface RouteParams {
   patientId: string
@@ -57,7 +58,7 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
   if (!isReady) return <Spinner />
 
   return (
-    <ScrollView style={{ padding: 15 }}>
+    <ScrollView style={styles.container}>
       <InstrumentSelectorModal
         patientId={patientId}
         closeModal={closeModal}
@@ -77,7 +78,7 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
         Creating new service request
       </Text>
       <Button
-        style={{ width: 'max-content', marginBottom: 20, backgroundColor: '#002a78' }}
+        style={{ alignSelf: 'flex-start', marginBottom: 20, backgroundColor: '#002a78' }}
         onPress={openModal}
       >
         <Text>Select instrument</Text>
@@ -91,6 +92,10 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
 export default CreateNewServiceRequestScreen
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 15,
+    height: Platform.OS === 'web' ? 'calc(100vh - 80px)' : undefined,
+  },
   listItem: {
     backgroundColor: '#f0f2f8',
     borderRadius: 10,

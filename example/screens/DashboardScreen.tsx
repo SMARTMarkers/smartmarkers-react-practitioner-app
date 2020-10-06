@@ -3,15 +3,15 @@ import { List, ListItem, Text, View, Icon, Button } from 'native-base'
 import { IPatient, useFhirContext, Server } from 'smartmarkers-lib'
 
 import ResponseView from '../components/ResponseView'
-import { ScrollView } from 'react-native'
+import { Platform, ScrollView } from 'react-native'
 import CreateNewServiceRequestScreen from './CreateNewServiceRequestScreen'
-import { Switch, Route, useHistory, useParams } from 'react-router-dom'
+import { Switch, Route, useHistory, useParams } from '../react-router'
 import RequestList from '../components/RequestList'
 import ReportList from '../components/ReportList'
 import FhirResource from '../components/FhirResource'
 import PatientList from '../components/PatientList'
 import { getPatientName } from '../utils'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 
 const getPatient = async (patientId: string, callback: any, server?: Server) => {
   const patients = await server?.getPatients(`_id=${patientId}`)
@@ -24,7 +24,7 @@ const DashboardScreen: React.FC<any> = () => {
 
   const history = useHistory()
   const backArrowIsVisible = history.location.pathname.split('/').length > 3
-  const { patientId } = useParams()
+  const { patientId } = useParams<any>()
 
   useEffect(() => {
     if (patientId) {
@@ -116,24 +116,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     backgroundColor: '#002a78',
-    maxWidth: '100vw',
-    height: 'calc(100vh - 56px)',
+    width: '100%',
+    height: Platform.OS === 'web' ? 'calc(100vh - 56px)' : Dimensions.get('window').height - 80,
   },
-  patientsSection: { paddingLeft: 0, maxWidth: 370, minWidth: 240 },
-  patientsScrollView: { height: 'calc(100vh - 118px)' },
+  patientsSection: { paddingLeft: 0, maxWidth: 370, minWidth: 240, flex: 1 },
+  patientsScrollView: {
+    height: Platform.OS === 'web' ? 'calc(100vh - 150px)' : Dimensions.get('window').height - 150,
+  },
   patientsHeader: { color: 'white', fontSize: 24, textAlign: 'center', width: '100%' },
   content: {
-    flexGrow: 1,
+    // flexGrow: 1,
     backgroundColor: 'white',
-    alignSelf: 'stretch',
+    // alignSelf: 'stretch',
     borderRadius: 20,
-    margin: '20px',
+    margin: 20,
     marginTop: 15,
     overflow: 'hidden',
     padding: 20,
-    width: 'min-content',
+    // flex: 1,
+    width: Dimensions.get('window').width - 390,
+    height: '95%',
   },
-  contentScrollView: { height: 'calc(100vh - 176px)', padding: 10, maxWidth: '100%' },
+  contentScrollView: { height: '90%', margin: 10, maxWidth: '100%' },
   contentHeader: {
     display: 'flex',
     width: '100%',
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   newRequestButton: {
-    width: 'max-content',
+    // width: 'max-content',
     alignSelf: 'center',
     flexGrow: 0,
     backgroundColor: '#002a78',

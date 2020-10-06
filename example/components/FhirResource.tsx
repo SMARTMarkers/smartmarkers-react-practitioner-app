@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner } from 'native-base'
 import { useFhirContext, Report, QuestionnaireResponse, FhirResourceView } from 'smartmarkers-lib'
-import { useParams } from 'react-router-dom'
+import { useParams } from '../react-router'
 
 interface RouteParams {
   reportId: string

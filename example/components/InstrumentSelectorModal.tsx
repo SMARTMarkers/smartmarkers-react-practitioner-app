@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ListItem, Text, Body, View, Button, Right, Icon, Tabs, Tab } from 'native-base'
 import { Instrument, InstrumentType, InstrumentList } from 'smartmarkers-lib'
 import { Modal } from '../tools/Modal'
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 interface InstrumentSelectorModalProps {
   patientId: string
@@ -76,7 +76,7 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
           </Text>
           <View
             onLayout={(event: any) => getHeight(event.nativeEvent.layout)}
-            style={{ width: '100%', flexGrow: 1, maxHeight: 'calc(100% - 120px)' }}
+            style={{ width: '100%', flexGrow: 1, maxHeight: Dimensions.get('window').height - 120 }}
           >
             <Tabs
               contentProps={{ style: { maxHeight: '100%' } }}
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    height: 'calc(100% - 40px)',
+    height: Dimensions.get('window').height - 80,
   },
   buttonsGroup: {
     display: 'flex',

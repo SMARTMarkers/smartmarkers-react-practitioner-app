@@ -32,7 +32,15 @@ const ButtonGroup: React.FC<ButtonGroupProps<any>> = props => {
             onPress={onPress(item.value)}
             style={item.value == value ? styles.activeButton : styles.button}
           >
-            <Text style={{ color: item.value == value ? '#002a78' : 'white' }}>{item.label}</Text>
+            <Text
+              style={{
+                color: item.value == value ? '#002a78' : 'white',
+                textAlign: 'center',
+                width: '100%',
+              }}
+            >
+              {item.label}
+            </Text>
           </Button>
         ))}
         {hasError && <Icon name="close-circle" />}
@@ -50,7 +58,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     width: '100%',
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: 'transparent',
   },
@@ -73,6 +83,6 @@ const styles = StyleSheet.create({
     height: 'auto',
     alignItems: 'center',
     alignSelf: 'center',
-    width: 'max-content',
+    // width: 'max-content',
   },
 })
