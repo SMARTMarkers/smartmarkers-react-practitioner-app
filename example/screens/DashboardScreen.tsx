@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useMemo } from 'react'
 import { List, ListItem, Text, View, Icon, Button } from 'native-base'
 import { IPatient, useFhirContext, Server } from 'smartmarkers-lib'
 
@@ -21,6 +21,56 @@ const getPatient = async (patientId: string, callback: any, server?: Server) => 
 const DashboardScreen: React.FC<any> = () => {
   const { server } = useFhirContext()
   const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null)
+
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          backgroundColor: '#002a78',
+          width: '100%',
+          height:
+            Platform.OS === 'web' ? 'calc(100vh - 56px)' : Dimensions.get('window').height - 80,
+        },
+        patientsSection: { paddingLeft: 0, maxWidth: 370, minWidth: 240, flex: 1 },
+        patientsScrollView: {
+          height:
+            Platform.OS === 'web' ? 'calc(100vh - 150px)' : Dimensions.get('window').height - 150,
+        },
+        patientsHeader: { color: 'white', fontSize: 24, textAlign: 'center', width: '100%' },
+        content: {
+          // flexGrow: 1,
+          backgroundColor: 'white',
+          // alignSelf: 'stretch',
+          borderRadius: 20,
+          margin: 20,
+          marginTop: 15,
+          overflow: 'hidden',
+          padding: 20,
+          // flex: 1,
+          height: '95%',
+          width: Dimensions.get('window').width - 390,
+        },
+        contentScrollView: { height: '90%', margin: 10, maxWidth: '100%' },
+        contentHeader: {
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexDirection: 'row',
+          paddingBottom: 15,
+        },
+        newRequestButton: {
+          // width: 'max-content',
+          alignSelf: 'center',
+          flexGrow: 0,
+          backgroundColor: '#002a78',
+        },
+      }),
+    [Dimensions]
+  )
 
   const history = useHistory()
   const backArrowIsVisible = history.location.pathname.split('/').length > 3
@@ -109,47 +159,3 @@ const DashboardScreen: React.FC<any> = () => {
 }
 
 export default DashboardScreen
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    backgroundColor: '#002a78',
-    width: '100%',
-    height: Platform.OS === 'web' ? 'calc(100vh - 56px)' : Dimensions.get('window').height - 80,
-  },
-  patientsSection: { paddingLeft: 0, maxWidth: 370, minWidth: 240, flex: 1 },
-  patientsScrollView: {
-    height: Platform.OS === 'web' ? 'calc(100vh - 150px)' : Dimensions.get('window').height - 150,
-  },
-  patientsHeader: { color: 'white', fontSize: 24, textAlign: 'center', width: '100%' },
-  content: {
-    // flexGrow: 1,
-    backgroundColor: 'white',
-    // alignSelf: 'stretch',
-    borderRadius: 20,
-    margin: 20,
-    marginTop: 15,
-    overflow: 'hidden',
-    padding: 20,
-    // flex: 1,
-    width: Dimensions.get('window').width - 390,
-    height: '95%',
-  },
-  contentScrollView: { height: '90%', margin: 10, maxWidth: '100%' },
-  contentHeader: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingBottom: 15,
-  },
-  newRequestButton: {
-    // width: 'max-content',
-    alignSelf: 'center',
-    flexGrow: 0,
-    backgroundColor: '#002a78',
-  },
-})

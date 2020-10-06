@@ -33,6 +33,8 @@ const createPromisClient = (settings?: FhirPromisProps) => {
 
 export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
   const IS_AUTHENTICATED = "isAuthenticated";
+  const TOKEN_RESPONSE = "tokenResponse";
+  const SERVET_URL = "serverUrl";
   const store = new ExpoStorage();
   const defaultScope =
     "openid fhirUser offline_access user/*.* patient/*.* launch/encounter launch/patient profile";
@@ -56,6 +58,42 @@ export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
   );
 
   React.useEffect(() => {
+    const retrieve = async () => {
+      const value = await store.get<boolean>(IS_AUTHENTICATED);
+      const tokenResponseJSON: string | null = await store.get(TOKEN_RESPONSE);
+      const serverUrl: string | null = await store.get(SERVET_URL);
+      if (value && tokenResponseJSON && serverUrl) {
+        new Promise((resolve, reject) => {
+          const client: Client = FHIR.client({
+            serverUrl,
+            tokenResponse: JSON.parse(tokenResponseJSON),
+          });
+          setFhirClient(client);
+          setServer(new Server(client, fhirPromisClient));
+          resolve(client);
+        })
+          .then((client) => (client as Client).user.read())
+          .then((user) => {
+            const item = user.name[0];
+            const name = [
+              item.prefix.join(" "),
+              item.given.join(" "),
+              item.family,
+            ].join(" ");
+            const u: User = {
+              id: user.id ? user.id : "",
+              name,
+              gender: user.gender,
+              birthDate: user.birthDate,
+              resourceType: user.resourceType,
+            };
+            setUser(u);
+            setIsAuthenticated(true);
+          })
+          .catch(console.error);
+      }
+    };
+    retrieve();
     // const retrieve = async () => {
     //   const value = await store.get<boolean>(IS_AUTHENTICATED);
     //   if (value) {
@@ -112,6 +150,8 @@ export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
     })
       .then(async (client) => {
         await store.set(IS_AUTHENTICATED, true);
+        await store.set(TOKEN_RESPONSE, JSON.stringify(tokenResponse));
+        await store.set(SERVET_URL, serverUrl);
         return (client as Client).user.read();
       })
       .then((user) => {

@@ -18,6 +18,7 @@ const Routes: React.FC = () => {
   return (
     <Switch>
       <Redirect exact from="/" to={`/dashboard`} />
+      {fhirContext.isAuthenticated && <Redirect exact from="/login" to={`/dashboard`} />}
       <RouteWithLayout exact path="/login" component={LoginScreen} layout={MainLayout} />
       {/* <Route
         exact

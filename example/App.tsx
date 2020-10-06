@@ -6,6 +6,7 @@ import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import * as Linking from 'expo-linking'
 import { FhirProvider, FhirProviderProps } from 'smartmarkers-lib'
+import { serverUrl } from './urls'
 
 const App: React.FC = () => {
   const [isReady, setIsReady] = useState(false)
@@ -37,8 +38,9 @@ const App: React.FC = () => {
   // const iss =
   //     'https://launch.smarthealthit.org/v/r4/sim/eyJoIjoiMSIsImIiOiIzMjZiNDY3NS0wYmM4LTRkYmQtYjQwNi1hNTU2NGMyODI0MDEiLCJpIjoiMSIsImoiOiIxIiwiZSI6ImVmYjVkNGNlLWRmZmMtNDdkZi1hYTZkLTA1ZDM3MmZkYjQwNyJ9/fhir'
   // const iss = "https://launch.smarthealthit.org/v/r4/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6IjMyNmI0Njc1LTBiYzgtNGRiZC1iNDA2LWE1NTY0YzI4MjQwMSJ9/fhir";
-  const iss =
-    'https://launch.smarthealthit.org/v/r4/sim/eyJoIjoiMSIsImIiOiIxNTVkM2Q4MC1mM2YwLTRiMzktOTIwNy0wZDEyMmNmOTRhMTEiLCJpIjoiMSIsImoiOiIxIiwiZSI6ImVmYjVkNGNlLWRmZmMtNDdkZi1hYTZkLTA1ZDM3MmZkYjQwNyJ9/fhir'
+  // const iss =
+  //   'https://launch.smarthealthit.org/v/r4/sim/eyJoIjoiMSIsImIiOiIxNTVkM2Q4MC1mM2YwLTRiMzktOTIwNy0wZDEyMmNmOTRhMTEiLCJpIjoiMSIsImoiOiIxIiwiZSI6ImVmYjVkNGNlLWRmZmMtNDdkZi1hYTZkLTA1ZDM3MmZkYjQwNyJ9/fhir'
+  const iss = serverUrl
   const scope =
     'openid fhirUser offline_access user/*.* patient/*.* launch/encounter launch/patient profile'
   const settings: FhirProviderProps = {

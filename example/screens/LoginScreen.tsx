@@ -4,18 +4,9 @@ import { useFhirContext } from 'smartmarkers-lib'
 import { useHistory } from 'react-router-dom'
 import * as WebBrowser from 'expo-web-browser'
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
+import { discovery, serverUrl } from '../urls'
 
 WebBrowser.maybeCompleteAuthSession()
-
-const discovery = {
-  authorizationEndpoint:
-    'https://launch.smarthealthit.org/v/r4/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6ImE2ODg5YzZkLTY5MTUtNGZhYy05ZDJmLWZjNmM0MmIzYTgyZSJ9/auth/authorize',
-  tokenEndpoint:
-    'https://launch.smarthealthit.org/v/r4/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6ImE2ODg5YzZkLTY5MTUtNGZhYy05ZDJmLWZjNmM0MmIzYTgyZSJ9/auth/token',
-}
-
-const serverUrl =
-  'https://launch.smarthealthit.org/v/r4/sim/eyJrIjoiMSIsImoiOiIxIiwiYiI6ImE2ODg5YzZkLTY5MTUtNGZhYy05ZDJmLWZjNmM0MmIzYTgyZSJ9/fhir'
 
 const LoginScreen: React.FC<any> = () => {
   const redirectUri = makeRedirectUri({
