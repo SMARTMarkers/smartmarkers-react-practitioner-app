@@ -37,10 +37,11 @@ export const ButtonGroup: React.FC<ButtonGroupProps<any>> = (props) => {
     segmentStyle.height = "auto";
     segmentStyle.alignItems = "center";
     segmentStyle.alignSelf = "center";
-    segmentStyle.width = "max-content";
-
+    // segmentStyle.width = "max-content";
     buttonStyle.marginBottom = 5;
-    buttonStyle.width = "100%";
+    // buttonStyle.width = "100%";
+    buttonStyle.alignSelf = "stretch";
+    buttonStyle.height = "auto";
     buttonStyle.display = "flex";
     buttonStyle.justifyContent = "center";
   }
