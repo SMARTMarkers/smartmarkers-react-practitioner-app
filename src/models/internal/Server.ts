@@ -48,7 +48,7 @@ export class Server {
     return await this.client
       .request<IPatient[]>(reqUrl, reqOptions)
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return [] as IPatient[];
       });
   }
@@ -69,7 +69,7 @@ export class Server {
     const items: IServiceRequest[] = await this.client
       .request<IServiceRequest[]>(reqUrl, reqOptions)
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return [] as IServiceRequest[];
       });
 
@@ -101,7 +101,7 @@ export class Server {
     const item = await this.client
       .request<IServiceRequest>(reqUrl, reqOptions)
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return {} as IServiceRequest;
       });
     const request = serviceRequestFactory.createServiceRequest(item);
@@ -130,7 +130,7 @@ export class Server {
     const items: IDomainResource[] = await this.client
       .request<IDomainResource[]>(reqUrl, reqOptions)
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return [] as IDomainResource[];
       });
 
@@ -158,7 +158,7 @@ export class Server {
     const item = await this.client
       .request<IDomainResource>(reqUrl, reqOptions)
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return undefined;
       });
     if (item) {
@@ -241,7 +241,7 @@ export class Server {
         { flat: true }
       )
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return [] as IQuestionnaireResponse[];
       });
   }
@@ -261,7 +261,7 @@ export class Server {
     return await this.client
       .request<IQuestionnaireResponse[]>(url, { flat: true })
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return [] as IQuestionnaireResponse[];
       });
   }
@@ -281,7 +281,7 @@ export class Server {
 
   async getInstrumentByReference<T>(reference: string) {
     return await this.client.request<T>(reference).catch((err: any) => {
-      console.error(err);
+      // console.error(err);
       return undefined;
     });
   }
@@ -314,7 +314,7 @@ export class Server {
         },
       })
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return undefined;
       });
   }
@@ -331,7 +331,7 @@ export class Server {
         },
       })
       .catch((err: any) => {
-        console.error(err);
+        // console.error(err);
         return undefined;
       });
   }

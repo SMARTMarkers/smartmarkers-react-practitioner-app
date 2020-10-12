@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { ListItem, Text, Body, View, Button, Right, Icon, Tabs, Tab } from 'native-base'
 import { Instrument, InstrumentType, InstrumentList } from 'smartmarkers-lib'
 import { Modal } from '../tools/Modal'
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 interface InstrumentSelectorModalProps {
   patientId: string
@@ -22,6 +22,57 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
   const [selectedInstruments, setSelectedInstruments] = useState<Instrument[]>(instruments)
 
   const [maxHeight, setMaxHeight] = useState(200)
+
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        listItem: {
+          backgroundColor: '#f0f2f8',
+          borderRadius: 10,
+          marginBottom: 3,
+          paddingLeft: 15,
+          paddingRight: 15,
+          marginLeft: 0,
+          marginRight: 0,
+        },
+        title: { color: '#002a78', fontWeight: 'bold' },
+        note: { color: '#a4a5a6' },
+        modalContent: {
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          margin: 20,
+          backgroundColor: 'white',
+          borderRadius: 20,
+          padding: 35,
+          width: '90%',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+          height: Dimensions.get('window').height - 80,
+        },
+        buttonsGroup: {
+          display: 'flex',
+          flexDirection: 'row',
+          width: 172,
+          justifyContent: 'space-between',
+          marginTop: 20,
+        },
+      }),
+    [Dimensions]
+  )
 
   useEffect(() => {
     setSelectedInstruments(instruments)
@@ -76,7 +127,7 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
           </Text>
           <View
             onLayout={(event: any) => getHeight(event.nativeEvent.layout)}
-            style={{ width: '100%', flexGrow: 1, maxHeight: 'calc(100% - 120px)' }}
+            style={{ width: '100%', flexGrow: 1, maxHeight: Dimensions.get('window').height - 120 }}
           >
             <Tabs
               contentProps={{ style: { maxHeight: '100%' } }}
@@ -136,50 +187,3 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
 }
 
 export default InstrumentSelectorModal
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  listItem: {
-    backgroundColor: '#f0f2f8',
-    borderRadius: 10,
-    marginBottom: 3,
-    paddingLeft: 15,
-    paddingRight: 15,
-    marginLeft: 0,
-    marginRight: 0,
-  },
-  title: { color: '#002a78', fontWeight: 'bold' },
-  note: { color: '#a4a5a6' },
-  modalContent: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    width: '90%',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    height: 'calc(100% - 40px)',
-  },
-  buttonsGroup: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: 172,
-    justifyContent: 'space-between',
-    marginTop: 20,
-  },
-})

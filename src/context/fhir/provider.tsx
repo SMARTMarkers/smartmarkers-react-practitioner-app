@@ -33,6 +33,8 @@ const createPromisClient = (settings?: FhirPromisProps) => {
 
 export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
   const IS_AUTHENTICATED = "isAuthenticated";
+  const TOKEN_RESPONSE = "tokenResponse";
+  const SERVET_URL = "serverUrl";
   const store = new ExpoStorage();
   const defaultScope =
     "openid fhirUser offline_access user/*.* patient/*.* launch/encounter launch/patient profile";
@@ -58,15 +60,19 @@ export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
   React.useEffect(() => {
     const retrieve = async () => {
       const value = await store.get<boolean>(IS_AUTHENTICATED);
-      if (value) {
-        await FHIR.oauth2
-          .ready()
-          .then((client) => {
-            setFhirClient(client);
-            setServer(new Server(client, fhirPromisClient));
-            return client;
-          })
-          .then((client) => client.user.read())
+      const tokenResponseJSON: string | null = await store.get(TOKEN_RESPONSE);
+      const serverUrl: string | null = await store.get(SERVET_URL);
+      if (value && tokenResponseJSON && serverUrl) {
+        new Promise((resolve, reject) => {
+          const client: Client = FHIR.client({
+            serverUrl,
+            tokenResponse: JSON.parse(tokenResponseJSON),
+          });
+          setFhirClient(client);
+          setServer(new Server(client, fhirPromisClient));
+          resolve(client);
+        })
+          .then((client) => (client as Client).user.read())
           .then((user) => {
             const item = user.name[0];
             const name = [
@@ -82,12 +88,44 @@ export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
               resourceType: user.resourceType,
             };
             setUser(u);
+            setIsAuthenticated(true);
           })
           .catch(console.error);
       }
-      setIsAuthenticated(value == null ? false : value);
     };
     retrieve();
+    // const retrieve = async () => {
+    //   const value = await store.get<boolean>(IS_AUTHENTICATED);
+    //   if (value) {
+    //     await FHIR.oauth2
+    //       .ready()
+    //       .then((client) => {
+    //         setFhirClient(client);
+    //         setServer(new Server(client, fhirPromisClient));
+    //         return client;
+    //       })
+    //       .then((client) => client.user.read())
+    //       .then((user) => {
+    //         const item = user.name[0];
+    //         const name = [
+    //           item.prefix.join(" "),
+    //           item.given.join(" "),
+    //           item.family,
+    //         ].join(" ");
+    //         const u: User = {
+    //           id: user.id ? user.id : "",
+    //           name,
+    //           gender: user.gender,
+    //           birthDate: user.birthDate,
+    //           resourceType: user.resourceType,
+    //         };
+    //         setUser(u);
+    //       })
+    //       .catch(console.error);
+    //   }
+    //   setIsAuthenticated(value == null ? false : value);
+    // };
+    // retrieve();
   }, []);
 
   const login = async () => {
@@ -100,26 +138,31 @@ export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
     });
   };
 
-  const loginCallback = async () => {
-    await FHIR.oauth2
-      .ready()
-      .then((client) => {
-        setFhirClient(client);
-        setServer(new Server(client, fhirPromisClient));
-        return client;
-      })
+  const loginCallback = async (tokenResponse: any, serverUrl: string) => {
+    await new Promise((resolve, reject) => {
+      const client: Client = FHIR.client({
+        serverUrl,
+        tokenResponse,
+      });
+      setFhirClient(client);
+      setServer(new Server(client, fhirPromisClient));
+      resolve(client);
+    })
       .then(async (client) => {
         await store.set(IS_AUTHENTICATED, true);
-        return client.user.read();
+        await store.set(TOKEN_RESPONSE, JSON.stringify(tokenResponse));
+        await store.set(SERVET_URL, serverUrl);
+        return (client as Client).user.read();
       })
       .then((user) => {
+        console.log(user);
         const item = user.name[0];
         const name = [
           item.prefix.join(" "),
           item.given.join(" "),
           item.family,
         ].join(" ");
-        const u: User = {
+        const u = {
           id: user.id ? user.id : "",
           name,
           gender: user.gender,
@@ -130,6 +173,35 @@ export const FhirProvider: React.FC<FhirProviderProps> = (props) => {
         setIsAuthenticated(true);
       })
       .catch(console.error);
+    // await FHIR.oauth2
+    //   .ready()
+    //   .then((client) => {
+    //     setFhirClient(client);
+    //     setServer(new Server(client, fhirPromisClient));
+    //     return client;
+    //   })
+    //   .then(async (client) => {
+    //     await store.set(IS_AUTHENTICATED, true);
+    //     return client.user.read();
+    //   })
+    //   .then((user) => {
+    //     const item = user.name[0];
+    //     const name = [
+    //       item.prefix.join(" "),
+    //       item.given.join(" "),
+    //       item.family,
+    //     ].join(" ");
+    //     const u: User = {
+    //       id: user.id ? user.id : "",
+    //       name,
+    //       gender: user.gender,
+    //       birthDate: user.birthDate,
+    //       resourceType: user.resourceType,
+    //     };
+    //     setUser(u);
+    //     setIsAuthenticated(true);
+    //   })
+    //   .catch(console.error);
   };
 
   const logout = async () => {

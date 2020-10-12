@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Redirect, Route, useHistory } from '../react-router'
 import { RouteWithLayout, PrivateRouteWithLayout } from '../components'
 import { Main as MainLayout } from '../layouts'
@@ -18,8 +18,9 @@ const Routes: React.FC = () => {
   return (
     <Switch>
       <Redirect exact from="/" to={`/dashboard`} />
+      {fhirContext.isAuthenticated && <Redirect exact from="/login" to={`/dashboard`} />}
       <RouteWithLayout exact path="/login" component={LoginScreen} layout={MainLayout} />
-      <Route
+      {/* <Route
         exact
         path="/auth-callback"
         render={() => (
@@ -30,7 +31,7 @@ const Routes: React.FC = () => {
             loginCallback={fhirContext.loginCallback}
           />
         )}
-      />
+      /> */}
       <PrivateRouteWithLayout
         component={DashboardScreen}
         layout={MainLayout}

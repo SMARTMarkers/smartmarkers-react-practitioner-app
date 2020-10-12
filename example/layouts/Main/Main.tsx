@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from '../../react-router'
 import { Container, Header, Content, Button, Icon, Title, Right, Body, Left } from 'native-base'
 import { useFhirContext } from 'smartmarkers-lib'
+import { StyleSheet } from 'react-native'
 
 interface MainProps {
   children: React.ReactNode
@@ -10,7 +11,7 @@ interface MainProps {
 const Main: React.FC<MainProps> = ({ ...props }) => {
   const { children } = props
   const history = useHistory()
-  const { user, isAuthenticated } = useFhirContext()
+  const { isAuthenticated } = useFhirContext()
 
   const showBackArrow = ['not-found', 'settings', 'create-new-service-request'].includes(
     history.location.pathname.split('/')[1]
@@ -23,8 +24,8 @@ const Main: React.FC<MainProps> = ({ ...props }) => {
   const goBack = () => history.goBack()
 
   return (
-    <Container>
-      <Header style={{ backgroundColor: '#083892' }}>
+    <Container style={styles.container}>
+      <Header style={styles.header}>
         {showBackArrow && (
           <Left>
             <Button transparent onPress={goBack}>
@@ -41,9 +42,25 @@ const Main: React.FC<MainProps> = ({ ...props }) => {
           </Right>
         )}
       </Header>
-      <Content>{children}</Content>
+      <Content style={styles.content}>{children}</Content>
     </Container>
   )
 }
 
 export default Main
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  header: {
+    flexGrow: 0,
+    backgroundColor: '#083892',
+  },
+  content: {
+    flexGrow: 1,
+  },
+})

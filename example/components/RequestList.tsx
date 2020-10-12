@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { RequestList as SmartRequestList, TaskScheduleStatus, Task } from 'smartmarkers-lib'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from '../react-router'
 import { ListItem, Body, Right, Icon, Text } from 'native-base'
 import { StyleSheet } from 'react-native'
 

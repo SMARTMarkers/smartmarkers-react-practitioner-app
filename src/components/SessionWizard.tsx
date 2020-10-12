@@ -17,6 +17,7 @@ import { Questionnaire } from "../instruments";
 import { IQuestionnaireResponse } from "../models";
 import { ReportFactory } from "../reports";
 import { FormData } from "./types";
+import { Platform } from "react-native";
 
 export interface SessionWizardProps {
   patient?: User;
@@ -127,17 +128,20 @@ export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
     );
   }
 
+  const isIos = Platform.OS === "ios";
+
   if (isReady) {
     return (
       <View>
         <List>
           {session.tasks.map((task, index) => {
             const isSelected = selected.includes(index);
+            const onToggle = () => onToggleSelect(index);
             return (
               <ListItem
                 key={`selectionItem${index}`}
                 selected={isSelected}
-                onPress={() => onToggleSelect(index)}
+                onPress={isIos ? undefined : onToggle}
               >
                 <Body>
                   <Text>
@@ -145,7 +149,10 @@ export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
                   </Text>
                 </Body>
                 <Right>
-                  <Switch value={isSelected} />
+                  <Switch
+                    onValueChange={isIos ? onToggle : undefined}
+                    value={isSelected}
+                  />
                 </Right>
               </ListItem>
             );

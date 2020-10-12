@@ -178,11 +178,25 @@ const TaskScheduleForm = (props: TaskScheduleFormProps) => {
       </Item>
       <Item picker={true} style={styles.containerItem}>
         <Label style={{ width: 90 }}>Start Date</Label>
-        <DateTime value={startDate} minDate={new Date()} onChange={onStartDateChange} />
+        <View style={{ width: 220 }}>
+          <DateTime
+            buttonColor="#002a78"
+            value={startDate}
+            minDate={new Date()}
+            onChange={onStartDateChange}
+          />
+        </View>
       </Item>
       <Item picker={true} style={styles.containerItem}>
         <Label style={{ width: 90 }}>End Date</Label>
-        <DateTime value={endDate} minDate={startDate} onChange={onEndDateChange} />
+        <View style={{ width: 220 }}>
+          <DateTime
+            buttonColor="#002a78"
+            value={endDate}
+            minDate={startDate}
+            onChange={onEndDateChange}
+          />
+        </View>
       </Item>
       <Item bordered={false} style={styles.submitButtonWrapper}>
         <Button
