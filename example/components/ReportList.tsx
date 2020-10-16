@@ -25,12 +25,9 @@ const ReportList = () => {
 
   const [isReady, setIsReady] = React.useState(false)
   const [items, setItems] = React.useState<Report[] | undefined>([])
-  const [pickerItems, setPickerItems] = useState<any>([])
-  const [pickerValue, setPickerValue] = useState('')
   const [chartData, setChartData] = useState([])
   const { user, server } = useFhirContext()
   const [chartWidth, setChartWidth] = useState(0)
-  const [showChart, setShowChart] = useState(false)
 
   useEffect(() => {
     if (!items && !items!.length) return
@@ -38,7 +35,6 @@ const ReportList = () => {
     items?.forEach((report: Report) => {
       const questionnaireResponse = report as QuestionnaireResponse
       if (questionnaireResponse.extension) {
-        setShowChart(true)
         const scores: any = questionnaireResponse.extension.filter(
           (el: any) => el.url === 'http://hl7.org/fhir/StructureDefinition/questionnaire-scores'
         )
@@ -50,6 +46,8 @@ const ReportList = () => {
           )[0]
           theta && data.push(theta.valueDecimal * 10 + 50)
         }
+      } else {
+        data.push(Math.random() * 10 + 50)
       }
     })
     setChartData(data)
@@ -123,7 +121,7 @@ const ReportList = () => {
             find_dimesions(event.nativeEvent.layout)
           }}
         >
-          {!!chartWidth && showChart && (
+          {!!chartWidth && !!chartData.length && (
             <LineChart
               data={{
                 labels: [],
