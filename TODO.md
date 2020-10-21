@@ -17,6 +17,7 @@
 - Can we pass the item `Task` object to the `HistoryScreen`
     - I had to add `instrumentTitle` to only pass the title of the instrument. If there is a way to pass the the complete `Task` item; then could have used: `task.instrument.title`
 - Remove: ChoosePatientScreen
+- Move: the PROMIS chart to the `smartmarkers` library as a component --> `<PromisLineChart />`
 
 
 ### Bugs:
