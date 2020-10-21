@@ -162,13 +162,13 @@ const TaskScheduleForm = (props: TaskScheduleFormProps) => {
         <Label style={styles.headerText}>TIMING</Label>
       </Item>
       <Item style={styles.containerItem}>
-        <Label style={{ flexShrink: 0, width: 120 }}>Shedule Type</Label>
+        <Label style={{ flexShrink: 0, width: 120 }}>Schedule Type</Label>
         <View style={styles.buttonGroupWrapper}>
           <ButtonGroup value={scheduleType} items={sheduleTypes} onChange={onScheduleTypeChange} />
         </View>
       </Item>
       <Item style={styles.containerItem}>
-        <Label style={{ flexShrink: 0, width: 120 }}>Preffered Day</Label>
+        <Label style={{ flexShrink: 0, width: 120 }}>Preferred Day</Label>
         <View style={styles.buttonGroupWrapper}>
           <ButtonGroup value={prefferedDay} items={weekDays} onChange={onPrefferedDayChange} />
         </View>

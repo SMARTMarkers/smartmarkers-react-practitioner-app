@@ -16,10 +16,10 @@ const getGenderIcon = (gender?: AdministrativeGender) => {
   let color: string = ''
   if (gender === AdministrativeGender.Male) {
     iconName = 'male'
-    color = '#72cef4'
+    color = '#7f7fac'
   } else if (gender === AdministrativeGender.Female) {
     iconName = 'female'
-    color = '#f98bc9'
+    color = '#7f7fac'
   }
 
   if (!iconName) return null
@@ -30,8 +30,9 @@ const getGenderIcon = (gender?: AdministrativeGender) => {
 const PatientList: React.FC<PatientListProps> = ({ onItemPress, filter, selectedPatientId }) => {
   const renderItem = useCallback(
     (item: IPatient, key: any) => {
-      const backgroundColor = selectedPatientId === item.id ? '#083892' : 'transparent'
+      const backgroundColor = selectedPatientId === item.id ? '#babad3' : 'transparent'
       return (
+ 
         <ListItem
           underlayColor="transparent"
           style={[styles.listItem, { backgroundColor }]}
@@ -41,7 +42,7 @@ const PatientList: React.FC<PatientListProps> = ({ onItemPress, filter, selected
         >
           <Left style={styles.genderSection}>{getGenderIcon(item.gender)}</Left>
           <Body>
-            <Text style={{ color: 'white' }}>{getPatientName(item)}</Text>
+            <Text style={{ color: 'black' }}>{getPatientName(item)}</Text>
             <Text style={{ color: '#6e86b5' }} note>
               {calculateAge(new Date(item.birthDate?.toString() || ''))}
             </Text>
@@ -51,12 +52,12 @@ const PatientList: React.FC<PatientListProps> = ({ onItemPress, filter, selected
     },
     [selectedPatientId, filter, onItemPress]
   )
-
+//_id=fc200fa2-12c9-4276-ba4a-e0601d424e55,9823384d-2120-478e-9ab3-6375c594347d,27de96c6-6910-4f0f-8f10-00ce6090f447,dbf9798e-4b52-4cd9-a9eb-ec36149c859a,37e97ea5-e2dc-4770-bb7d-93d02cfebb0c
   return (
     <SMARTPatientList
       renderItem={renderItem}
-      onItemPress={onItemPress}
-      filter={filter}
+      onItemPress={onItemPress} 
+      filter={'_id=fc200fa2-12c9-4276-ba4a-e0601d424e55,9823384d-2120-478e-9ab3-6375c594347d,27de96c6-6910-4f0f-8f10-00ce6090f447,dbf9798e-4b52-4cd9-a9eb-ec36149c859a,37e97ea5-e2dc-4770-bb7d-93d02cfebb0c'}
       selectedId={selectedPatientId}
     />
   )
@@ -68,13 +69,12 @@ const styles = StyleSheet.create({
   listItem: {
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 10,
   },
   listItemSelected: {
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 10,
-    backgroundColor: '#083892',
+    backgroundColor: '#babad3',
+    
   },
   genderSection: {
     height: 38,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
-    borderColor: '#72cef4',
+    borderColor: '#7f7fac',
     borderWidth: 2,
     borderStyle: 'solid',
   },

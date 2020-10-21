@@ -4,6 +4,10 @@ import { useHistory, useParams } from '../react-router'
 import { ListItem, Body, Right, Icon, Text } from 'native-base'
 import { StyleSheet } from 'react-native'
 
+// TODO-RS: replace line below with {item.request.getRequesterName()}
+
+
+
 interface RouteParams {
   patientId: string
 }
@@ -12,11 +16,12 @@ const RequestList = () => {
   const { patientId } = useParams<RouteParams>()
   const history = useHistory()
   const onItemPressRequest = (t: Task) => {
-    history.push(`/dashboard/${patientId}/${t.request?.id}/history`)
+    history.push(`/dashboard/${patientId}/${t.request?.id}/${t.getTitle()}/history`)
   }
 
   const renderRequestListItem = useCallback(
     (item: Task, key: any, onItemPress: (item: Task) => void, isLast: boolean) => (
+      
       <ListItem
         key={key}
         underlayColor="transparent"
@@ -25,10 +30,9 @@ const RequestList = () => {
         style={styles.listItem}
       >
         <Body>
-          <Text style={styles.title}>{item.getTitle()}</Text>
-          <Text note style={styles.note}>
-            {item.getNote()} {item.schedule ? TaskScheduleStatus[item.schedule?.status] : ''}
-          </Text>
+          <Text note>#{item.request.id} | { new Date(item.request?.meta?.lastUpdated).toLocaleDateString('en-US')} </Text>        
+          <Text>Instrument: <Text style={styles.title}>{item.getTitle()}</Text></Text>
+          <Text>Requested by: { item.request.getRequester() } </Text>
         </Body>
         <Right>
           <Icon style={{ color: '#002a78' }} active name="arrow-forward" />
@@ -59,6 +63,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     marginLeft: 0,
+    fontWeight: 'bold'
   },
   title: { color: '#002a78', fontWeight: 'bold' },
   note: { color: '#a4a5a6' },

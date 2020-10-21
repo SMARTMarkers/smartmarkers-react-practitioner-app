@@ -46,7 +46,7 @@ export const RequestList: React.FC<RequestListProps> = (props) => {
   const renderStatues = (items: Task[], status: string, index: number) => (
     <>
       <ListItem key={index} itemHeader>
-        <Text>{status.toUpperCase()}</Text>
+        <Text style={{ fontWeight: 'bold' }}>{status.toUpperCase()}</Text>
       </ListItem>
       {items.map((item, index) =>
         render(item, index, onItemPress, index == items.length - 1)

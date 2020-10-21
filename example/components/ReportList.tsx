@@ -17,10 +17,11 @@ import { LineChart } from 'react-native-chart-kit'
 interface RouteParams {
   patientId: string
   requestId: string
+  instrumentTitle: string
 }
 
 const ReportList = () => {
-  const { patientId, requestId } = useParams<RouteParams>()
+  const { patientId, requestId, instrumentTitle } = useParams<RouteParams>()
   const history = useHistory()
 
   const [isReady, setIsReady] = React.useState(false)
@@ -79,10 +80,11 @@ const ReportList = () => {
   const renderItem = (item: Report, key: any) => (
     <ListItem key={item.id} onPress={() => onPress(item)} style={styles.listItem}>
       <Body>
-        <Text style={styles.title}>{item.getTitle()}</Text>
-        <Text note style={styles.note}>
+
+      <Text style={styles.title}>{ new Date(item.meta?.lastUpdated).toLocaleDateString('en-US')}</Text>
+      <Text note style={styles.note}>
           {item.getNote()}
-        </Text>
+      </Text>
       </Body>
       <Right>
         <Icon style={{ color: '#002a78' }} active name="arrow-forward" />
@@ -99,11 +101,13 @@ const ReportList = () => {
       return <>{items?.map((item, index) => renderItem(item, index))}</>
     } else {
       return (
+        <>
         <ListItem>
           <Body>
-            <Text note>NO ITEMS</Text>
+            <Text note>No Responses Found</Text>
           </Body>
         </ListItem>
+        </>
       )
     }
   }
@@ -115,6 +119,13 @@ const ReportList = () => {
 
   return (
     <>
+
+    <View style={{ margin: 15 }}>
+    <Text style={styles.headerTitle}>{ instrumentTitle }</Text>
+    <Text note>Questionnaire</Text>
+    </View>
+
+
       {!!(chartData && chartData.length) && (
         <View
           onLayout={event => {
@@ -170,4 +181,5 @@ const styles = StyleSheet.create({
   },
   title: { color: '#002a78', fontWeight: 'bold' },
   note: { color: '#a4a5a6' },
+  headerTitle: { textAlign: 'left', fontSize: 20, fontWeight: 'bold', color: '#575757' },      
 })

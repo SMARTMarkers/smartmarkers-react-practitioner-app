@@ -29,31 +29,32 @@ const DashboardScreen: React.FC<any> = () => {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'flex-start',
-          backgroundColor: '#002a78',
+          backgroundColor: '#d2d2e2',
+          
           width: '100%',
           height:
             Platform.OS === 'web' ? 'calc(100vh - 56px)' : Dimensions.get('window').height - 80,
         },
-        patientsSection: { paddingLeft: 0, maxWidth: 370, minWidth: 240, flex: 1 },
+        patientsSection: { paddingLeft: 0, maxWidth: 350, minWidth: 240, flex: 1 },
         patientsScrollView: {
           height:
             Platform.OS === 'web' ? 'calc(100vh - 150px)' : Dimensions.get('window').height - 150,
+          backgroundColor: '#d2d2e2',
         },
-        patientsHeader: { color: 'white', fontSize: 24, textAlign: 'center', width: '100%' },
+        patientsHeader: { color: 'darkGray', fontSize: 24, textAlign: 'center', width: '100%' },
         content: {
           // flexGrow: 1,
           backgroundColor: 'white',
           // alignSelf: 'stretch',
-          borderRadius: 20,
-          margin: 20,
-          marginTop: 15,
+          marginTop: 0,
           overflow: 'hidden',
-          padding: 20,
-          // flex: 1,
-          height: '95%',
-          width: Dimensions.get('window').width - 390,
+          padding: 20 ,
+          flex: 1,
+          borderLeftWidth: 1,
+          height: '100%',
+          width: Dimensions.get('window').width - 350,
         },
-        contentScrollView: { height: '90%', margin: 10, maxWidth: '100%' },
+        contentScrollView: { height: '100%', margin: 0, maxWidth: '100%' },
         contentHeader: {
           display: 'flex',
           width: '100%',
@@ -63,10 +64,7 @@ const DashboardScreen: React.FC<any> = () => {
           paddingBottom: 15,
         },
         newRequestButton: {
-          // width: 'max-content',
-          alignSelf: 'center',
-          flexGrow: 0,
-          backgroundColor: '#002a78',
+          alignSelf: 'center'
         },
       }),
     [Dimensions]
@@ -97,15 +95,15 @@ const DashboardScreen: React.FC<any> = () => {
     <View style={styles.container}>
       <List style={styles.patientsSection}>
         <ListItem itemHeader>
-          <Text style={styles.patientsHeader}>PATIENTS</Text>
+          <Text style={styles.patientsHeader}>Patients</Text>
         </ListItem>
-        <View style={styles.patientsScrollView}>
+        <ScrollView style={styles.patientsScrollView}>
           <PatientList
             selectedPatientId={selectedPatient?.id}
-            filter={''}
+            filter={'_summary=True'}
             onItemPress={onItemPress}
           />
-        </View>
+        </ScrollView>
       </List>
       <View style={styles.content}>
         <View style={styles.contentHeader}>
@@ -120,21 +118,28 @@ const DashboardScreen: React.FC<any> = () => {
                 </Button>
               )}
               <View style={{ flexGrow: 2 }}>
-                <Text style={{ fontSize: 24, fontWeight: 'bold', flexGrow: 1, color: '#002a78' }}>
-                  {getPatientName(selectedPatient)}
+                <Text style={{ fontSize: 34, fontWeight: 'bold', flexGrow: 1, color: '#0' }}>
+                    {`Name: ${getPatientName(selectedPatient)}`}
                 </Text>
-                <Text note>
-                  {`GEN: ${selectedPatient.gender} DOB: ${selectedPatient.birthDate}`}
-                </Text>
-                <Text note>{`MRN: ${selectedPatient.id}`}</Text>
+                  <Text style={{ color: 'gray' }}>{`Gender: ${selectedPatient.gender}`}</Text>
+                  <Text style={{ color: 'gray' }}>{`Date of Birth: ${selectedPatient.birthDate}`}</Text>
+                  <Text style={{ color: 'gray' }}>{`MRN: ${selectedPatient.id}`}</Text>
               </View>
               <Button onPress={onCreateNewRequest} style={styles.newRequestButton}>
                 <Text>New request</Text>
               </Button>
             </>
-          )}
+          )}   
         </View>
-        <ScrollView style={styles.contentScrollView}>
+
+        <View
+            style={{
+                borderBottomColor: 'gray',
+                borderBottomWidth: 1,
+            }}
+        />
+
+       <ScrollView style={styles.contentScrollView}>
           <Switch>
             <Route exact path="/dashboard/:patientId">
               <RequestList />
@@ -142,7 +147,7 @@ const DashboardScreen: React.FC<any> = () => {
             <Route exact path="/dashboard/create-new-service-request">
               <CreateNewServiceRequestScreen patientId={selectedPatient?.id || ''} />
             </Route>
-            <Route exact path="/dashboard/:patientId/:requestId/history">
+            <Route exact path="/dashboard/:patientId/:requestId/:instrumentTitle/history">
               <ReportList />
             </Route>
             <Route exact path="/dashboard/:patientId/:requestId/history/:reportId/report">
