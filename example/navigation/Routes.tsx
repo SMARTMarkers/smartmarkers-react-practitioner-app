@@ -40,7 +40,7 @@ const Routes: React.FC = () => {
           '/dashboard',
           '/dashboard/:patientId',
           '/dashboard/create-new-service-request',
-          '/dashboard/:patientId/:requestId/history',
+          '/dashboard/:patientId/:requestId/:instrumentTitle/history',
           '/dashboard/:patientId/:requestId/history/:reportId/report',
           '/dashboard/:patientId/:requestId/history/:reportId/resource',
         ]}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ListItem, Text, Body, Spinner, Button, Right, Icon } from 'native-base'
+import { ListItem, Text, Body, Spinner, Button, Right, Icon, View } from 'native-base'
 import { useFhirContext, TaskSchedule, Instrument } from 'smartmarkers-lib'
 import { ScrollView } from 'react-native'
 import { useParams, useHistory } from '../react-router'
@@ -7,6 +7,7 @@ import InstrumentSelectorModal from '../components/InstrumentSelectorModal'
 import TaskScheduleForm from '../components/TaskScheduleForm'
 import { StyleSheet } from 'react-native'
 import { Platform, Dimensions } from 'react-native'
+import { Modal } from '../tools/Modal'
 
 interface RouteParams {
   patientId: string
@@ -19,6 +20,9 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
   const [isReady, setIsReady] = useState(true)
   const { server } = useFhirContext()
   const history = useHistory()
+
+  const [successInstruments, setSuccessInstruments] = useState<Instrument[]>([])
+  const [errorInstruments, setErrorInstruments] = useState<Instrument[]>([])
 
   const openModal = () => setModalIsOpen(true)
   const closeModal = () => setModalIsOpen(false)
@@ -46,14 +50,96 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
   const onSubmit = async (item: TaskSchedule) => {
     if (selectedInstruments.length > 0) {
       setIsReady(false)
-      selectedInstruments.forEach(
-        async (i: Instrument) => await server?.createServiceRequest(i, item, patientId)
-      )
-      history.push(`/dashboard/${patientId}`)
+      const successData: Instrument[] = []
+      const errorData: Instrument[] = []
+      for (const i of selectedInstruments) {
+        await server
+          ?.createServiceRequest(i, item, patientId)
+          .then((res: any) => {
+            successData.push(i)
+          })
+          .catch((e: any) => {
+            errorData.push(i)
+          })
+      }
+      setSuccessInstruments(successData)
+      setErrorInstruments(errorData)
     }
   }
 
   const onModalSubmit = (arr: Instrument[]) => setSelectedInstruments(arr)
+
+  if (successInstruments.length || errorInstruments.length) {
+    return (
+      <Modal animationType="fade" animated transparent visible={true}>
+        <View
+          style={{
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              margin: 20,
+              backgroundColor: 'white',
+              borderRadius: 20,
+              padding: 35,
+              width: '90%',
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+            }}
+          >
+            {!!successInstruments.length && (
+              <>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>
+                  Following requests have been sent successfully:
+                </Text>
+                <View>
+                  {successInstruments.map((i: Instrument) => (
+                    <Text key={i.id} style={{ color: '#499f67' }}>
+                      {i.getTitle()}
+                    </Text>
+                  ))}
+                </View>
+              </>
+            )}
+            {!!errorInstruments.length && (
+              <>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20, marginTop: 20 }}>
+                  Following requests failed to sent:
+                </Text>
+                <View>
+                  {errorInstruments.map((i: Instrument) => (
+                    <Text key={i.id} style={{ color: '#f22e3b' }}>
+                      {i.getTitle}
+                    </Text>
+                  ))}
+                </View>
+              </>
+            )}
+            <Button
+              style={{ backgroundColor: '#499f67', marginTop: 20 }}
+              onPress={() => history.push(`/dashboard/${patientId}`)}
+            >
+              <Text>Ok</Text>
+            </Button>
+          </View>
+        </View>
+      </Modal>
+    )
+  }
 
   if (!isReady) return <Spinner />
 

@@ -33,7 +33,12 @@ const Main: React.FC<MainProps> = ({ ...props }) => {
             </Button>
           </Left>
         )}
-        <Body style={{ flexGrow: 5 }}></Body>
+
+        <Body style={{ flexGrow: 5 }}>
+        {<Title style={{ alignSelf: 'center' }}>
+            Patient Reported Outcomes
+        </Title>}
+    </Body>
         {isAuthenticated && (
           <Right>
             <Button transparent onPress={onPersonPress}>

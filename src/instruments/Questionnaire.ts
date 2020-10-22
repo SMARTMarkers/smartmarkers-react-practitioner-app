@@ -113,11 +113,19 @@ export class Questionnaire implements IQuestionnaire, Instrument {
     if (this.text && this.text.textContent) {
       return this.text.textContent;
     }
+
+    if (this.code && this.code.length > 0 && this.code[0].display) {
+      return this.code[0].display
+    }
+
     return this.id;
   }
 
   public getNote() {
-    return `Q ${this.id}`;
+    if (this.code && this.code.length > 0 && this.code[0].code) {
+      return `Code: ${this.code[0].code} | #${this.id}`;      
+    }
+    return `#${this.id}`;
   }
 
   async getReports(serviceRequestId?: string, patientId?: string) {

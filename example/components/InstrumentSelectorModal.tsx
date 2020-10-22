@@ -137,7 +137,7 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
               <Tab
                 activeTabStyle={{ backgroundColor: '#083892' }}
                 tabStyle={{ backgroundColor: '#002a78' }}
-                heading="Questioners"
+                heading="Surveys"
               >
                 <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>
                   Questionnaires
@@ -155,9 +155,9 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
               <Tab
                 activeTabStyle={{ backgroundColor: '#083892', maxHeight: '100%' }}
                 tabStyle={{ backgroundColor: '#002a78', maxHeight: '100%' }}
-                heading="Promises"
+                heading="PROMIS Instruments"
               >
-                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>Promises</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>Computer Adaptive Questionnaires</Text>
                 <View style={{ maxHeight }}>
                   <InstrumentList
                     type={InstrumentType.Questionnaire}
