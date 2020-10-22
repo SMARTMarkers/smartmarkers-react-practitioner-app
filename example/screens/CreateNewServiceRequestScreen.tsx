@@ -8,6 +8,8 @@ import TaskScheduleForm from '../components/TaskScheduleForm'
 import { StyleSheet } from 'react-native'
 import { Platform, Dimensions } from 'react-native'
 import { Modal } from '../tools/Modal'
+import { setReports, setSelectedReport, setTasksData } from '../store/main/actions'
+import { useDispatch } from 'react-redux'
 
 interface RouteParams {
   patientId: string
@@ -26,6 +28,8 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
 
   const openModal = () => setModalIsOpen(true)
   const closeModal = () => setModalIsOpen(false)
+
+  const dispatch = useDispatch()
 
   const renderItem = (item: Instrument, key: any) => {
     const onDelete = () => {
@@ -68,6 +72,18 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
   }
 
   const onModalSubmit = (arr: Instrument[]) => setSelectedInstruments(arr)
+
+  const goToHomePage = () => {
+    dispatch(
+      setTasksData({
+        patientId: '',
+        tasks: [],
+      })
+    )
+    dispatch(setReports([]))
+    dispatch(setSelectedReport(null))
+    history.push(`/dashboard/${patientId}`)
+  }
 
   if (successInstruments.length || errorInstruments.length) {
     return (
@@ -129,10 +145,7 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
                 </View>
               </>
             )}
-            <Button
-              style={{ backgroundColor: '#499f67', marginTop: 20 }}
-              onPress={() => history.push(`/dashboard/${patientId}`)}
-            >
+            <Button style={{ backgroundColor: '#499f67', marginTop: 20 }} onPress={goToHomePage}>
               <Text>Ok</Text>
             </Button>
           </View>

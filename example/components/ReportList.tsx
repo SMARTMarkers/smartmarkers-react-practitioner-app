@@ -1,39 +1,40 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  ReportList as SmartReportList,
   ReportType,
   Report,
-  IQuestionnaireResponseItemAnswer,
-  IQuestionnaireResponseItem,
   QuestionnaireResponse,
   useFhirContext,
   ReportFactory,
 } from 'smartmarkers-lib'
 import { useHistory, useParams } from 'react-router-dom'
 import { ListItem, Body, Right, Icon, Text, Spinner, Picker, View } from 'native-base'
-import { Dimensions, Platform, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
+import { useDispatch, useSelector } from 'react-redux'
+import { Store } from '../store/models'
+import { setReports, setSelectedReport } from '../store/main/actions'
 
 interface RouteParams {
   patientId: string
   requestId: string
-  instrumentTitle: string
 }
 
 const ReportList = () => {
-  const { patientId, requestId, instrumentTitle } = useParams<RouteParams>()
+  const { patientId, requestId } = useParams<RouteParams>()
   const history = useHistory()
+  const selectedTask = useSelector((store: Store) => store.root.selectedTask)
 
   const [isReady, setIsReady] = React.useState(false)
-  const [items, setItems] = React.useState<Report[] | undefined>([])
   const [chartData, setChartData] = useState([])
   const { user, server } = useFhirContext()
   const [chartWidth, setChartWidth] = useState(0)
+  const reports = useSelector((store: Store) => store.root.reports)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!items && !items!.length) return
+    if (!reports && !reports!.length) return
     const data: any = []
-    items?.forEach((report: Report) => {
+    reports?.forEach((report: Report) => {
       const questionnaireResponse = report as QuestionnaireResponse
       if (questionnaireResponse.extension) {
         const scores: any = questionnaireResponse.extension.filter(
@@ -52,7 +53,7 @@ const ReportList = () => {
       }
     })
     setChartData(data)
-  }, [items])
+  }, [reports])
 
   React.useEffect(() => {
     const loadItems = async () => {
@@ -65,7 +66,7 @@ const ReportList = () => {
         console.log(`patient=${user?.id}&based-on=ServiceRequest/${requestId}`)
         const factory = new ReportFactory(server)
         const reports = items.map((i: any) => factory.createReport(i))
-        setItems(reports)
+        dispatch(setReports(reports))
       }
 
       setIsReady(true)
@@ -74,17 +75,19 @@ const ReportList = () => {
   }, [requestId, user, user?.id])
 
   const onPress = (r: Report) => {
+    dispatch(setSelectedReport(r))
     history.push(`/dashboard/${patientId}/${requestId}/history/${r.id}/report`)
   }
 
   const renderItem = (item: Report, key: any) => (
     <ListItem key={item.id} onPress={() => onPress(item)} style={styles.listItem}>
       <Body>
-
-      <Text style={styles.title}>{ new Date(item.meta?.lastUpdated).toLocaleDateString('en-US')}</Text>
-      <Text note style={styles.note}>
+        <Text style={styles.title}>
+          {new Date(item?.meta?.lastUpdated as string).toLocaleDateString('en-US')}
+        </Text>
+        <Text note style={styles.note}>
           {item.getNote()}
-      </Text>
+        </Text>
       </Body>
       <Right>
         <Icon style={{ color: '#002a78' }} active name="arrow-forward" />
@@ -93,20 +96,20 @@ const ReportList = () => {
   )
 
   const getRequestList = () => {
-    if (!isReady) {
+    if (!isReady && !reports.length) {
       return <Spinner />
     }
 
-    if (items?.length) {
-      return <>{items?.map((item, index) => renderItem(item, index))}</>
+    if (reports?.length) {
+      return <>{reports?.map((item, index) => renderItem(item, index))}</>
     } else {
       return (
         <>
-        <ListItem>
-          <Body>
-            <Text note>No Responses Found</Text>
-          </Body>
-        </ListItem>
+          <ListItem>
+            <Body>
+              <Text note>No Responses Found</Text>
+            </Body>
+          </ListItem>
         </>
       )
     }
@@ -119,12 +122,10 @@ const ReportList = () => {
 
   return (
     <>
-
-    <View style={{ margin: 15 }}>
-    <Text style={styles.headerTitle}>{ instrumentTitle }</Text>
-    <Text note>Questionnaire</Text>
-    </View>
-
+      <View style={{ margin: 15 }}>
+        <Text style={styles.headerTitle}>{selectedTask?.instrument?.getTitle()}</Text>
+        <Text note>Questionnaire</Text>
+      </View>
 
       {!!(chartData && chartData.length) && (
         <View
@@ -181,5 +182,5 @@ const styles = StyleSheet.create({
   },
   title: { color: '#002a78', fontWeight: 'bold' },
   note: { color: '#a4a5a6' },
-  headerTitle: { textAlign: 'left', fontSize: 20, fontWeight: 'bold', color: '#575757' },      
+  headerTitle: { textAlign: 'left', fontSize: 20, fontWeight: 'bold', color: '#575757' },
 })

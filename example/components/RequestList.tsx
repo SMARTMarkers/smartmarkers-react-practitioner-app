@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react'
-import { RequestList as SmartRequestList, TaskScheduleStatus, Task } from 'smartmarkers-lib'
+import { TaskScheduleStatus, Task, useFhirContext } from 'smartmarkers-lib'
 import { useHistory, useParams } from '../react-router'
-import { ListItem, Body, Right, Icon, Text } from 'native-base'
+import { ListItem, Body, Right, Icon, Text, Spinner } from 'native-base'
 import { StyleSheet } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { setTasksData, setSelectedTask } from '../store/main/actions'
+import { Store } from '../store/models'
 // TODO-RS: replace line below with {item.request.getRequesterName()}
-
-
 
 interface RouteParams {
   patientId: string
@@ -14,14 +15,19 @@ interface RouteParams {
 
 const RequestList = () => {
   const { patientId } = useParams<RouteParams>()
+  const [isReady, setIsReady] = React.useState(false)
+  const { server } = useFhirContext()
   const history = useHistory()
+  const dispatch = useDispatch()
+  const { patientId: tasksPatientId, tasks } = useSelector((store: Store) => store.root.tasksData)
+
   const onItemPressRequest = (t: Task) => {
+    dispatch(setSelectedTask(t))
     history.push(`/dashboard/${patientId}/${t.request?.id}/${t.getTitle()}/history`)
   }
 
   const renderRequestListItem = useCallback(
     (item: Task, key: any, onItemPress: (item: Task) => void, isLast: boolean) => (
-      
       <ListItem
         key={key}
         underlayColor="transparent"
@@ -30,9 +36,14 @@ const RequestList = () => {
         style={styles.listItem}
       >
         <Body>
-          <Text note>#{item.request.id} | { new Date(item.request?.meta?.lastUpdated).toLocaleDateString('en-US')} </Text>        
-          <Text>Instrument: <Text style={styles.title}>{item.getTitle()}</Text></Text>
-          <Text>Requested by: { item.request.getRequester() } </Text>
+          <Text note>
+            #{item?.request?.id} |{' '}
+            {new Date(item?.request?.meta?.lastUpdated as string).toLocaleDateString('en-US')}{' '}
+          </Text>
+          <Text>
+            Instrument: <Text style={styles.title}>{item.getTitle()}</Text>
+          </Text>
+          <Text>Requested by: {item?.request?.getRequester()} </Text>
         </Body>
         <Right>
           <Icon style={{ color: '#002a78' }} active name="arrow-forward" />
@@ -42,14 +53,58 @@ const RequestList = () => {
     []
   )
 
+  const renderStatues = (items: Task[], status: string, index: number) => (
+    <>
+      <ListItem key={status} itemHeader>
+        <Text style={{ fontWeight: 'bold' }}>{status.toUpperCase()}</Text>
+      </ListItem>
+      {items.map((item, index) =>
+        renderRequestListItem(item, index, onItemPressRequest, index == items.length - 1)
+      )}
+    </>
+  )
+
+  React.useEffect(() => {
+    setIsReady(false)
+    const loadItems = async () => {
+      if (server) {
+        const tasks = (await server.getPatientTasksByRequests('status=active', patientId)) as Task[]
+        dispatch(
+          setTasksData({
+            patientId,
+            tasks,
+          })
+        )
+      }
+      setIsReady(true)
+    }
+    loadItems()
+  }, [patientId])
+
+  if (!isReady && (patientId !== tasksPatientId || !tasks.length)) {
+    return <Spinner />
+  }
+
+  const statusesItems: any = {}
+  for (let status of [
+    TaskScheduleStatus.Due,
+    TaskScheduleStatus.Upcoming,
+    TaskScheduleStatus.Overdue,
+  ]) {
+    statusesItems[TaskScheduleStatus[status]] = tasks.filter(
+      (value: any) => value.schedule?.status == status
+    )
+  }
+
   return (
-    <SmartRequestList
-      onItemPress={onItemPressRequest}
-      filter={'status=active'}
-      statuses={[TaskScheduleStatus.Due, TaskScheduleStatus.Upcoming, TaskScheduleStatus.Overdue]}
-      patientId={patientId}
-      renderItem={renderRequestListItem}
-    />
+    <>
+      {Object.keys(statusesItems).map(
+        (key: string, index) =>
+          statusesItems[key] &&
+          statusesItems[key].length > 0 &&
+          renderStatues(statusesItems[key], key, index)
+      )}
+    </>
   )
 }
 
@@ -63,7 +118,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     marginLeft: 0,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   title: { color: '#002a78', fontWeight: 'bold' },
   note: { color: '#a4a5a6' },

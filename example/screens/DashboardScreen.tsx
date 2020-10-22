@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react'
 import { List, ListItem, Text, View, Icon, Button } from 'native-base'
 import { IPatient, useFhirContext, Server } from 'smartmarkers-lib'
+import { Platform, ScrollView, StyleSheet, Dimensions } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 
 import ResponseView from '../components/ResponseView'
-import { Platform, ScrollView } from 'react-native'
 import CreateNewServiceRequestScreen from './CreateNewServiceRequestScreen'
 import { Switch, Route, useHistory, useParams } from '../react-router'
 import RequestList from '../components/RequestList'
@@ -11,7 +12,8 @@ import ReportList from '../components/ReportList'
 import FhirResource from '../components/FhirResource'
 import PatientList from '../components/PatientList'
 import { getPatientName } from '../utils'
-import { StyleSheet, Dimensions } from 'react-native'
+import { setSelectedPatient } from '../store/main/actions'
+import { Store } from '../store/models'
 
 const getPatient = async (patientId: string, callback: any, server?: Server) => {
   const patients = await server?.getPatients(`_id=${patientId}`)
@@ -20,7 +22,8 @@ const getPatient = async (patientId: string, callback: any, server?: Server) => 
 
 const DashboardScreen: React.FC<any> = () => {
   const { server } = useFhirContext()
-  const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null)
+  const selectedPatient = useSelector((store: Store) => store.root.selectedPatient)
+  const dispatch = useDispatch()
 
   const styles = useMemo(
     () =>
@@ -30,7 +33,7 @@ const DashboardScreen: React.FC<any> = () => {
           flexDirection: 'row',
           alignItems: 'flex-start',
           backgroundColor: '#d2d2e2',
-          
+
           width: '100%',
           height:
             Platform.OS === 'web' ? 'calc(100vh - 56px)' : Dimensions.get('window').height - 80,
@@ -41,14 +44,14 @@ const DashboardScreen: React.FC<any> = () => {
             Platform.OS === 'web' ? 'calc(100vh - 150px)' : Dimensions.get('window').height - 150,
           backgroundColor: '#d2d2e2',
         },
-        patientsHeader: { color: 'darkGray', fontSize: 24, textAlign: 'center', width: '100%' },
+        patientsHeader: { color: '#5d5d5d', fontSize: 24, textAlign: 'center', width: '100%' },
         content: {
           // flexGrow: 1,
           backgroundColor: 'white',
           // alignSelf: 'stretch',
           marginTop: 0,
           overflow: 'hidden',
-          padding: 20 ,
+          padding: 20,
           flex: 1,
           borderLeftWidth: 1,
           height: '100%',
@@ -62,9 +65,11 @@ const DashboardScreen: React.FC<any> = () => {
           alignItems: 'center',
           flexDirection: 'row',
           paddingBottom: 15,
+          borderBottomColor: 'gray',
+          borderBottomWidth: 1,
         },
         newRequestButton: {
-          alignSelf: 'center'
+          alignSelf: 'center',
         },
       }),
     [Dimensions]
@@ -75,18 +80,19 @@ const DashboardScreen: React.FC<any> = () => {
   const { patientId } = useParams<any>()
 
   useEffect(() => {
-    if (patientId) {
-      getPatient(patientId, setSelectedPatient, server || undefined)
+    if (patientId && !selectedPatient) {
+      getPatient(
+        patientId,
+        (patient: IPatient) => dispatch(setSelectedPatient(patient)),
+        server || undefined
+      )
     }
-  }, [patientId, setSelectedPatient])
+  }, [patientId])
 
-  const onItemPress = useCallback(
-    async (item: IPatient) => {
-      history.push(`/dashboard/${item.id}`)
-      setSelectedPatient(item)
-    },
-    [setSelectedPatient]
-  )
+  const onItemPress = useCallback(async (item: IPatient) => {
+    history.push(`/dashboard/${item.id}`)
+    dispatch(setSelectedPatient(item))
+  }, [])
 
   const onCreateNewRequest = () =>
     history.push(`/create-new-service-request/${selectedPatient!.id}`)
@@ -106,40 +112,31 @@ const DashboardScreen: React.FC<any> = () => {
         </ScrollView>
       </List>
       <View style={styles.content}>
-        <View style={styles.contentHeader}>
-          {selectedPatient && (
-            <>
-              {backArrowIsVisible && (
-                <Button transparent onPress={() => history.goBack()}>
-                  <Icon
-                    name="arrow-back"
-                    style={{ fontSize: 30, fontWeight: 'bold', color: '#002a78' }}
-                  />
-                </Button>
-              )}
-              <View style={{ flexGrow: 2 }}>
-                <Text style={{ fontSize: 34, fontWeight: 'bold', flexGrow: 1, color: '#0' }}>
-                    {`Name: ${getPatientName(selectedPatient)}`}
-                </Text>
-                  <Text style={{ color: 'gray' }}>{`Gender: ${selectedPatient.gender}`}</Text>
-                  <Text style={{ color: 'gray' }}>{`Date of Birth: ${selectedPatient.birthDate}`}</Text>
-                  <Text style={{ color: 'gray' }}>{`MRN: ${selectedPatient.id}`}</Text>
-              </View>
-              <Button onPress={onCreateNewRequest} style={styles.newRequestButton}>
-                <Text>New request</Text>
+        {selectedPatient && (
+          <View style={styles.contentHeader}>
+            {backArrowIsVisible && (
+              <Button transparent onPress={() => history.goBack()}>
+                <Icon
+                  name="arrow-back"
+                  style={{ fontSize: 30, fontWeight: 'bold', color: '#002a78' }}
+                />
               </Button>
-            </>
-          )}   
-        </View>
+            )}
+            <View style={{ flexGrow: 2 }}>
+              <Text style={{ fontSize: 34, fontWeight: 'bold', flexGrow: 1, color: '#000' }}>
+                {`Name: ${getPatientName(selectedPatient)}`}
+              </Text>
+              <Text style={{ color: 'gray' }}>{`Gender: ${selectedPatient.gender}`}</Text>
+              <Text style={{ color: 'gray' }}>{`Date of Birth: ${selectedPatient.birthDate}`}</Text>
+              <Text style={{ color: 'gray' }}>{`MRN: ${selectedPatient.id}`}</Text>
+            </View>
+            <Button onPress={onCreateNewRequest} style={styles.newRequestButton}>
+              <Text>New request</Text>
+            </Button>
+          </View>
+        )}
 
-        <View
-            style={{
-                borderBottomColor: 'gray',
-                borderBottomWidth: 1,
-            }}
-        />
-
-       <ScrollView style={styles.contentScrollView}>
+        <ScrollView style={styles.contentScrollView}>
           <Switch>
             <Route exact path="/dashboard/:patientId">
               <RequestList />
