@@ -20,7 +20,8 @@ import {
 } from "../models";
 import { Instrument } from "./Instrument";
 import { ReportFactory } from "../reports/ReportFactory";
-import { Server, TaskSchedule } from "../models/internal";
+import { Server } from "../models/internal";
+import { TaskSchedule } from "../task";
 import { Report, QuestionnaireResponse } from "../reports";
 
 export class Questionnaire implements IQuestionnaire, Instrument {
@@ -115,7 +116,7 @@ export class Questionnaire implements IQuestionnaire, Instrument {
     }
 
     if (this.code && this.code.length > 0 && this.code[0].display) {
-      return this.code[0].display
+      return this.code[0].display;
     }
 
     return this.id;
@@ -123,7 +124,7 @@ export class Questionnaire implements IQuestionnaire, Instrument {
 
   public getNote() {
     if (this.code && this.code.length > 0 && this.code[0].code) {
-      return `Code: ${this.code[0].code} | #${this.id}`;      
+      return `Code: ${this.code[0].code} | #${this.id}`;
     }
     return `#${this.id}`;
   }

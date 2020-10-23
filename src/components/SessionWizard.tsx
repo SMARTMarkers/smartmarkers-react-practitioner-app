@@ -12,7 +12,8 @@ import {
   Title,
 } from "native-base";
 import { useFhirContext, User } from "../context";
-import { Task, Session, ResultBundle } from "../models/internal";
+import { Session, ResultBundle } from "../session";
+import { Task } from "../task";
 import { FormMode, Form } from "./Form";
 import { Questionnaire } from "../instruments";
 import { IQuestionnaireResponse } from "../models";
@@ -24,10 +25,11 @@ export interface SessionWizardProps {
   patient?: User;
   tasks: Task[];
   onCompleted: () => void;
+  onCancel?: () => void;
 }
 
 export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
-  const { patient, tasks, onCompleted } = props;
+  const { patient, tasks, onCompleted, onCancel } = props;
   const { server, user } = useFhirContext();
   if (!server) {
     return <View>FHIR Client is not initialized</View>;
@@ -118,13 +120,15 @@ export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
 
   if (showTaskDetails) {
     return (
-      <View style={{
-        alignItems: 'center',
-        margin: 15,
-        }}>
+      <View
+        style={{
+          alignItems: "center",
+          margin: 15,
+        }}
+      >
         <Body>
-        <Text style={styles.title}>Starting Assessment</Text>
-        <Text style={styles.text}>{task.getTitle()}</Text>
+          <Text style={styles.title}>Starting Assessment</Text>
+          <Text style={styles.text}>{task.getTitle()}</Text>
         </Body>
 
         <Button onPress={onStartTask}>
@@ -138,13 +142,16 @@ export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
 
   if (isReady) {
     return (
-      <View style={{
-        alignItems: 'center',
-        margin: 15,
-        }}>
+      <View
+        style={{
+          margin: 15,
+        }}
+      >
         <Body>
-        <Text style={styles.title}>Assessment Complete</Text>
-        <Text style={styles.text}>Please select the surveys to submit to your practitioner</Text>
+          <Text style={styles.title}>Assessment Complete</Text>
+          <Text style={styles.text}>
+            Please select the surveys to submit to your practitioner
+          </Text>
         </Body>
         <List>
           {session.tasks.map((task, index) => {
@@ -172,7 +179,7 @@ export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
             );
           })}
         </List>
-        <Button onPress={onSubmit}>
+        <Button style={{ alignSelf: "center" }} onPress={onSubmit}>
           <Text>SUBMIT SELECTED RESULTS</Text>
         </Button>
       </View>
@@ -187,6 +194,7 @@ export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
           mode={FormMode.Wizard}
           onSubmit={onTaskSubmit}
           quitWithErrorMessage={quitWithErrorMessage}
+          onCancel={onCancel}
         />
       )}
     </View>
@@ -194,15 +202,21 @@ export const SessionWizard: React.FC<SessionWizardProps> = (props) => {
 };
 
 const styles = StyleSheet.create({
-    listItem: {
-        backgroundColor: '#f0f2f8',
-        borderRadius: 10,
-        marginBottom: 15,
-        paddingLeft: 15,
-        paddingRight: 15,
-        marginRight: 15,
-    },
-    text: { margin: 15, color: '#002a78', fontWeight: 'bold' },
-    note: { color: '#a4a5a6' },
-    title: { margin: 15, textAlign: 'left', fontSize: 20, fontWeight: 'bold', color: '#575757' },
+  listItem: {
+    backgroundColor: "#f0f2f8",
+    borderRadius: 10,
+    marginBottom: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginRight: 15,
+  },
+  text: { margin: 15, color: "#002a78", fontWeight: "bold" },
+  note: { color: "#a4a5a6" },
+  title: {
+    margin: 15,
+    textAlign: "left",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#575757",
+  },
 });
