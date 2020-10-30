@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Switch, Redirect, Route, useHistory } from '../react-router'
+import React from 'react'
+import { Switch, Redirect } from '../react-router'
 import { RouteWithLayout, PrivateRouteWithLayout } from '../components'
 import { Main as MainLayout } from '../layouts'
 
@@ -9,29 +9,16 @@ import {
   DashboardScreen,
   CreateNewServiceRequestScreen,
 } from '../screens'
-import { useFhirContext, LoginCallback } from 'smartmarkers-lib'
+import { useFhirContext } from 'smartmarkers'
 
 const Routes: React.FC = () => {
   const fhirContext = useFhirContext()
-  const history = useHistory()
 
   return (
     <Switch>
       <Redirect exact from="/" to={`/dashboard`} />
       {fhirContext.isAuthenticated && <Redirect exact from="/login" to={`/dashboard`} />}
       <RouteWithLayout exact path="/login" component={LoginScreen} layout={MainLayout} />
-      {/* <Route
-        exact
-        path="/auth-callback"
-        render={() => (
-          <LoginCallback
-            redirect={() => {
-              history.push('/dashboard')
-            }}
-            loginCallback={fhirContext.loginCallback}
-          />
-        )}
-      /> */}
       <PrivateRouteWithLayout
         component={DashboardScreen}
         layout={MainLayout}

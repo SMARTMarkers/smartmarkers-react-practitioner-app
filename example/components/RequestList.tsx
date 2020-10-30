@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { TaskScheduleStatus, Task, useFhirContext } from 'smartmarkers-lib'
+import { TaskScheduleStatus, Task, useFhirContext } from 'smartmarkers'
 import { useHistory, useParams } from '../react-router'
 import { ListItem, Body, Right, Icon, Text, Spinner } from 'native-base'
 import { StyleSheet } from 'react-native'
@@ -19,7 +19,7 @@ const RequestList = () => {
   const { server } = useFhirContext()
   const history = useHistory()
   const dispatch = useDispatch()
-  const { patientId: tasksPatientId, tasks } = useSelector((store: Store) => store.root.tasksData)
+  const tasks = useSelector((store: Store) => store.root.tasks)
 
   const onItemPressRequest = (t: Task) => {
     dispatch(setSelectedTask(t))
@@ -69,19 +69,14 @@ const RequestList = () => {
     const loadItems = async () => {
       if (server) {
         const tasks = (await server.getPatientTasksByRequests('status=active', patientId)) as Task[]
-        dispatch(
-          setTasksData({
-            patientId,
-            tasks,
-          })
-        )
+        dispatch(setTasksData(tasks))
       }
       setIsReady(true)
     }
     loadItems()
   }, [patientId])
 
-  if (!isReady && (patientId !== tasksPatientId || !tasks.length)) {
+  if (!isReady && !tasks.length) {
     return <Spinner />
   }
 

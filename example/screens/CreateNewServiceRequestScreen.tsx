@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { ListItem, Text, Body, Spinner, Button, Right, Icon, View } from 'native-base'
-import { useFhirContext, TaskSchedule, Instrument } from 'smartmarkers-lib'
+import { useFhirContext, TaskSchedule, Instrument } from 'smartmarkers'
 import { ScrollView } from 'react-native'
 import { useParams, useHistory } from '../react-router'
 import InstrumentSelectorModal from '../components/InstrumentSelectorModal'
 import TaskScheduleForm from '../components/TaskScheduleForm'
 import { StyleSheet } from 'react-native'
-import { Platform, Dimensions } from 'react-native'
+import { Platform } from 'react-native'
 import { Modal } from '../tools/Modal'
 import { setReports, setSelectedReport, setTasksData } from '../store/main/actions'
 import { useDispatch } from 'react-redux'
@@ -74,12 +74,7 @@ const CreateNewServiceRequestScreen: React.FC<any> = ({}) => {
   const onModalSubmit = (arr: Instrument[]) => setSelectedInstruments(arr)
 
   const goToHomePage = () => {
-    dispatch(
-      setTasksData({
-        patientId: '',
-        tasks: [],
-      })
-    )
+    dispatch(setTasksData([]))
     dispatch(setReports([]))
     dispatch(setSelectedReport(null))
     history.push(`/dashboard/${patientId}`)

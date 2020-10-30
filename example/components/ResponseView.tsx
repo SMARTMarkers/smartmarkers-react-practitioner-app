@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Spinner, ListItem, Body, List, Right, Icon } from 'native-base'
-import { QuestionnaireResponse, QuestionnaireResponseView } from 'smartmarkers-lib'
+import { QuestionnaireResponse, QuestionnaireResponseView } from 'smartmarkers'
 import { useHistory } from '../react-router'
 import { useSelector } from 'react-redux'
 import { Store } from '../store/models'

@@ -1,13 +1,8 @@
-import { IPatient, Report, Task } from 'smartmarkers-lib'
-
-export interface TasksData {
-  patientId: string
-  tasks: Task[]
-}
+import { IPatient, Report, Task } from 'smartmarkers'
 
 export interface RootState {
   patients: IPatient[]
-  tasksData: TasksData
+  tasks: Task[]
   reports: Report[]
   selectedReport: Report | null
   selectedPatient: IPatient | null

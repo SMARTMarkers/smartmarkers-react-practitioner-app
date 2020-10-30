@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import {
-  ReportType,
-  Report,
-  QuestionnaireResponse,
-  useFhirContext,
-  ReportFactory,
-} from 'smartmarkers-lib'
+import React, { useState } from 'react'
+import { ReportType, Report, useFhirContext, ReportFactory, PromisLineChart } from 'smartmarkers'
 import { useHistory, useParams } from 'react-router-dom'
 import { ListItem, Body, Right, Icon, Text, Spinner, Picker, View } from 'native-base'
 import { StyleSheet } from 'react-native'
-import { LineChart } from 'react-native-chart-kit'
 import { useDispatch, useSelector } from 'react-redux'
 import { Store } from '../store/models'
 import { setReports, setSelectedReport } from '../store/main/actions'
@@ -25,35 +18,10 @@ const ReportList = () => {
   const selectedTask = useSelector((store: Store) => store.root.selectedTask)
 
   const [isReady, setIsReady] = React.useState(false)
-  const [chartData, setChartData] = useState([])
   const { user, server } = useFhirContext()
   const [chartWidth, setChartWidth] = useState(0)
   const reports = useSelector((store: Store) => store.root.reports)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (!reports && !reports!.length) return
-    const data: any = []
-    reports?.forEach((report: Report) => {
-      const questionnaireResponse = report as QuestionnaireResponse
-      if (questionnaireResponse.extension) {
-        const scores: any = questionnaireResponse.extension.filter(
-          (el: any) => el.url === 'http://hl7.org/fhir/StructureDefinition/questionnaire-scores'
-        )
-
-        if (scores[0]) {
-          const theta = scores[0].extension.filter(
-            (el: any) =>
-              el.url === 'http://hl7.org/fhir/StructureDefinition/questionnaire-scores/theta'
-          )[0]
-          theta && data.push(theta.valueDecimal * 10 + 50)
-        }
-      } else {
-        data.push(Math.random() * 10 + 50)
-      }
-    })
-    setChartData(data)
-  }, [reports])
 
   React.useEffect(() => {
     const loadItems = async () => {
@@ -115,55 +83,13 @@ const ReportList = () => {
     }
   }
 
-  const find_dimesions = (layout: any) => {
-    const { x, y, width, height } = layout
-    setChartWidth(width)
-  }
-
   return (
     <>
       <View style={{ margin: 15 }}>
         <Text style={styles.headerTitle}>{selectedTask?.instrument?.getTitle()}</Text>
         <Text note>Questionnaire</Text>
       </View>
-
-      {!!(chartData && chartData.length) && (
-        <View
-          onLayout={event => {
-            find_dimesions(event.nativeEvent.layout)
-          }}
-        >
-          {!!chartWidth && !!chartData.length && (
-            <LineChart
-              data={{
-                labels: [],
-                datasets: [
-                  {
-                    data: chartData,
-                  },
-                ],
-              }}
-              width={chartWidth} // from react-native
-              height={220}
-              chartConfig={{
-                backgroundColor: '#e26a00',
-                backgroundGradientFrom: '#fb8c00',
-                backgroundGradientTo: '#ffa726',
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-              }}
-              bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16,
-              }}
-            />
-          )}
-        </View>
-      )}
+      <PromisLineChart responses={reports} />
       {getRequestList()}
     </>
   )

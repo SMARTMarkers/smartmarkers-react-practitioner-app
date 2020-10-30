@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react'
 import { List, ListItem, Text, View, Icon, Button } from 'native-base'
-import { IPatient, useFhirContext, Server } from 'smartmarkers-lib'
+import { IPatient, useFhirContext, Server } from 'smartmarkers'
 import { Platform, ScrollView, StyleSheet, Dimensions } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 

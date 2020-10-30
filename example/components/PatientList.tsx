@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { IPatient, AdministrativeGender, useFhirContext } from 'smartmarkers-lib'
+import { IPatient, AdministrativeGender, useFhirContext } from 'smartmarkers'
 import { ListItem, Left, Body, Text, Icon, Spinner } from 'native-base'
 
 import { getPatientName, calculateAge } from '../utils'

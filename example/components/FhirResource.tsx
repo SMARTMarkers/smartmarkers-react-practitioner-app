@@ -1,6 +1,6 @@
 import React from 'react'
 import { Spinner } from 'native-base'
-import { QuestionnaireResponse, FhirResourceView } from 'smartmarkers-lib'
+import { QuestionnaireResponse, FhirResourceView } from 'smartmarkers'
 import { useSelector } from 'react-redux'
 import { Store } from '../store/models'
 

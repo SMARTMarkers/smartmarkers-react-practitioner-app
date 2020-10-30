@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from '../../react-router'
 import { Container, Header, Content, Button, Icon, Title, Right, Body, Left } from 'native-base'
-import { useFhirContext } from 'smartmarkers-lib'
+import { useFhirContext } from 'smartmarkers'
 import { StyleSheet } from 'react-native'
 
 interface MainProps {
@@ -35,10 +35,8 @@ const Main: React.FC<MainProps> = ({ ...props }) => {
         )}
 
         <Body style={{ flexGrow: 5 }}>
-        {<Title style={{ alignSelf: 'center' }}>
-            Patient Reported Outcomes
-        </Title>}
-    </Body>
+          {<Title style={{ alignSelf: 'center' }}>Patient Reported Outcomes</Title>}
+        </Body>
         {isAuthenticated && (
           <Right>
             <Button transparent onPress={onPersonPress}>

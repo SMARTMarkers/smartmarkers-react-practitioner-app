@@ -7,10 +7,7 @@ export const initialState: RootState = {
   selectedReport: null,
   selectedPatient: null,
   selectedTask: null,
-  tasksData: {
-    patientId: '',
-    tasks: [],
-  },
+  tasks: [],
 }
 
 export function mainReducer(state: RootState = { ...initialState }, action: any) {
@@ -20,10 +17,10 @@ export function mainReducer(state: RootState = { ...initialState }, action: any)
         ...state,
         patients: action.patients,
       }
-    case types.SET_TASKS_DATA:
+    case types.SET_TASKS:
       return {
         ...state,
-        tasksData: action.tasksData,
+        tasks: action.tasks,
       }
     case types.SET_REPORTS:
       return {

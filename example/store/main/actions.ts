@@ -1,16 +1,15 @@
-import { Report, IPatient, Task } from 'smartmarkers-lib'
+import { Report, IPatient, Task } from 'smartmarkers'
 
 import * as types from './types'
-import { TasksData } from './models'
 
 export const setPatients = (patients: IPatient[]) => ({
   type: types.SET_PATIENTS_LIST,
   patients,
 })
 
-export const setTasksData = (tasksData: TasksData) => ({
-  type: types.SET_TASKS_DATA,
-  tasksData,
+export const setTasksData = (tasks: Task[]) => ({
+  type: types.SET_TASKS,
+  tasks,
 })
 
 export const setReports = (reports: Report[]) => ({
