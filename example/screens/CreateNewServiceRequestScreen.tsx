@@ -188,7 +188,7 @@ export default CreateNewServiceRequestScreen
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    height: Platform.OS === 'web' ? 'calc(100vh - 80px)' : undefined,
+    height: Platform.OS === 'web' ? 'calc(100vh - 90px)' : undefined,
   },
   listItem: {
     backgroundColor: '#f0f2f8',

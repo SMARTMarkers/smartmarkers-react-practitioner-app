@@ -36,12 +36,12 @@ const DashboardScreen: React.FC<any> = () => {
 
           width: '100%',
           height:
-            Platform.OS === 'web' ? 'calc(100vh - 56px)' : Dimensions.get('window').height - 80,
+            Platform.OS === 'web' ? 'calc(100vh - 87px)' : Dimensions.get('window').height - 110,
         },
         patientsSection: { paddingLeft: 0, maxWidth: 350, minWidth: 240, flex: 1 },
         patientsScrollView: {
           height:
-            Platform.OS === 'web' ? 'calc(100vh - 150px)' : Dimensions.get('window').height - 150,
+            Platform.OS === 'web' ? 'calc(100vh - 180px)' : Dimensions.get('window').height - 180,
           backgroundColor: '#d2d2e2',
         },
         patientsHeader: { color: '#5d5d5d', fontSize: 24, textAlign: 'center', width: '100%' },
