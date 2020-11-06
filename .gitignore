@@ -8,15 +8,6 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-web-report/
-.dist
-dist
-.expo
-.idea
-.vscode
+
 # macOS
 .DS_Store
-example-patient/**/*
-example-patient-app/**/*
-
-coverage
