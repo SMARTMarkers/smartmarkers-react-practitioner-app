@@ -1,37 +1,19 @@
 import React from 'react'
 import { Spinner } from 'native-base'
-import { useFhirContext, Report, QuestionnaireResponse, FhirResourceView } from 'smartmarkers-lib'
-import { useParams } from '../react-router'
+import { QuestionnaireResponse, FhirResourceView } from 'smartmarkers'
+import { useSelector } from 'react-redux'
+import { Store } from '../store/models'
 
 interface RouteParams {
   reportId: string
 }
 
 const FhirResource: React.FC<any> = () => {
-  const { reportId } = useParams<RouteParams>()
-  const { server } = useFhirContext()
-  const [isReady, setIsReady] = React.useState(false)
-  const [item, setItem] = React.useState<Report | undefined>(undefined)
+  const selectedReport = useSelector((store: Store) => store.root.selectedReport)
 
-  React.useEffect(() => {
-    const loadItems = async () => {
-      if (server) {
-        const item = (await server.getQuestionnaireResponseById(reportId)) as Report
-        if (item) {
-          setItem(item)
-        }
-      }
+  if (!selectedReport) return <Spinner />
 
-      setIsReady(true)
-    }
-    loadItems()
-  }, [])
-
-  if (!isReady) {
-    return <Spinner />
-  }
-
-  return <FhirResourceView response={item as QuestionnaireResponse} />
+  return <FhirResourceView response={selectedReport as QuestionnaireResponse} />
 }
 
 export default FhirResource

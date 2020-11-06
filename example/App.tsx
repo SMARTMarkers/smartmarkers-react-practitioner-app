@@ -5,8 +5,11 @@ import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import * as Linking from 'expo-linking'
-import { FhirProvider, FhirProviderProps } from 'smartmarkers-lib'
+import { FhirProvider, FhirProviderProps } from 'smartmarkers'
 import { serverUrl } from './urls'
+import { Provider } from 'react-redux'
+
+import { store } from './store'
 
 const App: React.FC = () => {
   const [isReady, setIsReady] = useState(false)
@@ -57,9 +60,11 @@ const App: React.FC = () => {
 
   return (
     <FhirProvider {...settings}>
-      <Router>
-        <Routes />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Routes />
+        </Router>
+      </Provider>
     </FhirProvider>
   )
 }

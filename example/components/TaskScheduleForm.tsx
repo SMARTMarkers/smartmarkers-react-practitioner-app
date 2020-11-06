@@ -1,7 +1,7 @@
 import React from 'react'
-import { TaskSchedule, WEEKDAY, DaysOfWeek, UnitsOfTime, ITiming } from 'smartmarkers-lib'
+import { TaskSchedule, WEEKDAY, DaysOfWeek, UnitsOfTime, ITiming } from 'smartmarkers'
 import { Form as NativeBaseForm, Button, Text, Item, Label } from 'native-base'
-import { GroupItem, DateTime } from 'smartmarkers-lib/dist/components/inputs'
+import { GroupItem, DateTime } from 'smartmarkers/dist/components/inputs'
 import { View } from 'native-base'
 
 import ButtonGroup from '../components/ButtonGroup'

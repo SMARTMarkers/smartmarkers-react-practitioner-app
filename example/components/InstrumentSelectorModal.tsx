@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { ListItem, Text, Body, View, Button, Right, Icon, Tabs, Tab } from 'native-base'
-import { Instrument, InstrumentType, InstrumentList } from 'smartmarkers-lib'
+import { Instrument, InstrumentType, InstrumentList } from 'smartmarkers'
 import { Modal } from '../tools/Modal'
 import { Dimensions, StyleSheet } from 'react-native'
 
@@ -157,7 +157,9 @@ const InstrumentSelectorModal: React.FC<InstrumentSelectorModalProps> = ({
                 tabStyle={{ backgroundColor: '#002a78', maxHeight: '100%' }}
                 heading="PROMIS Instruments"
               >
-                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>Computer Adaptive Questionnaires</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>
+                  Computer Adaptive Questionnaires
+                </Text>
                 <View style={{ maxHeight }}>
                   <InstrumentList
                     type={InstrumentType.Questionnaire}

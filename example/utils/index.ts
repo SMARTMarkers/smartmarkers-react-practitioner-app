@@ -1,9 +1,8 @@
-import { IHumanName, IPatient, NameUse } from 'smartmarkers-lib'
-
+import { IHumanName, IPatient, NameUse } from 'smartmarkers'
 
 // Todo-RS: Move this convininece method to `smartmarkers-lib`
 // Other apps could possible use this
-// 
+//
 export const calculateAge = (birthday: Date) => {
   var ageDifMs = Date.now() - birthday.getTime()
   var ageDate = new Date(ageDifMs)
@@ -21,7 +20,7 @@ export const getHumanNameString = (humanName: IHumanName) => {
 
 // Todo-RS: Move this convininece method to `smartmarkers-lib`
 // Other apps could possible use this
-// 
+//
 export const getPatientName = (patient: IPatient) => {
   if (patient && patient.name && patient.name.length > 0) {
     if (patient.name.length == 1) {

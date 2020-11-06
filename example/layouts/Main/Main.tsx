@@ -1,7 +1,19 @@
 import React from 'react'
 import { useHistory } from '../../react-router'
-import { Container, Header, Content, Button, Icon, Title, Right, Body, Left } from 'native-base'
-import { useFhirContext } from 'smartmarkers-lib'
+import {
+  Container,
+  Header,
+  Content,
+  Button,
+  Icon,
+  Title,
+  Right,
+  Body,
+  Left,
+  Footer,
+  Text,
+} from 'native-base'
+import { useFhirContext } from 'smartmarkers'
 import { StyleSheet } from 'react-native'
 
 interface MainProps {
@@ -35,10 +47,8 @@ const Main: React.FC<MainProps> = ({ ...props }) => {
         )}
 
         <Body style={{ flexGrow: 5 }}>
-        {<Title style={{ alignSelf: 'center' }}>
-            Patient Reported Outcomes
-        </Title>}
-    </Body>
+          {<Title style={{ alignSelf: 'center' }}>Patient Reported Outcomes</Title>}
+        </Body>
         {isAuthenticated && (
           <Right>
             <Button transparent onPress={onPersonPress}>
@@ -48,6 +58,13 @@ const Main: React.FC<MainProps> = ({ ...props }) => {
         )}
       </Header>
       <Content style={styles.content}>{children}</Content>
+      <Footer
+        style={{ height: 30, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}
+      >
+        <Text style={{ color: 'white', paddingLeft: 30 }}>
+          Copyright Boston Children’s Hospital
+        </Text>
+      </Footer>
     </Container>
   )
 }

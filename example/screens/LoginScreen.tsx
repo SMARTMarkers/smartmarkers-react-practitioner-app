@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Text, Button, Form } from 'native-base'
-import { useFhirContext } from 'smartmarkers-lib'
+import { useFhirContext } from 'smartmarkers'
 import { useHistory } from 'react-router-dom'
 import * as WebBrowser from 'expo-web-browser'
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
@@ -76,9 +76,25 @@ const LoginScreen: React.FC<any> = () => {
   }, [response])
   return (
     <Form>
-      <Text style={{ alignSelf: 'center', marginTop: 20, fontSize: 24, fontWeight: 'bold', flexGrow: 1, color: '#002a78' }}>Patient Reported Outcomes: Practitioner Login</Text>
+      <Text
+        style={{
+          alignSelf: 'center',
+          marginTop: 20,
+          fontSize: 24,
+          fontWeight: 'bold',
+          flexGrow: 1,
+          color: '#002a78',
+        }}
+      >
+        Patient Reported Outcomes: Practitioner Login
+      </Text>
       <Text style={{ alignSelf: 'center', marginTop: 5 }}>powered by SMART Markers</Text>
-      <Button full primary style={{ alignSelf: 'center', margin: 20, marginTop: 40 }} onPress={onLoginPress}>
+      <Button
+        full
+        primary
+        style={{ alignSelf: 'center', margin: 20, marginTop: 40 }}
+        onPress={onLoginPress}
+      >
         <Text>Login to EHR</Text>
       </Button>
     </Form>

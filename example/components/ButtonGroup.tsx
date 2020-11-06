@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, Button, Segment, Icon, View } from 'native-base'
-import { GroupItem } from 'smartmarkers-lib/dist/components/inputs'
+import { GroupItem } from 'smartmarkers/dist/components/inputs'
 import { StyleSheet } from 'react-native'
 
 export interface ButtonGroupProps<T> {
