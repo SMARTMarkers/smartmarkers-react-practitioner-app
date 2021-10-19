@@ -1,18 +1,27 @@
-import React from 'react'
-import { Text, List, ListItem, Left, Button, Icon, Body, Right } from 'native-base'
-import { useFhirContext } from 'smartmarkers'
+import React from "react";
+import {
+  Text,
+  List,
+  ListItem,
+  Left,
+  Button,
+  Icon,
+  Body,
+  Right,
+} from "native-base";
+import { useFhirContext } from "../smartmarkers-router";
 
 const SettingsScreen: React.FC<any> = () => {
-  const { user, logout } = useFhirContext()
+  const { user, logout } = useFhirContext();
 
   const onLogoutPress = () => {
-    logout()
-  }
+    logout();
+  };
   return (
     <List>
       <ListItem icon>
         <Left>
-          <Button style={{ backgroundColor: '#FF9501' }}>
+          <Button style={{ backgroundColor: "#FF9501" }}>
             <Icon active type="Ionicons" name="person" />
           </Button>
         </Left>
@@ -26,7 +35,7 @@ const SettingsScreen: React.FC<any> = () => {
       </ListItem>
       <ListItem icon>
         <Left>
-          <Button style={{ backgroundColor: '#007AFF' }}>
+          <Button style={{ backgroundColor: "#007AFF" }}>
             <Icon active type="Ionicons" name="calendar" />
           </Button>
         </Left>
@@ -40,7 +49,7 @@ const SettingsScreen: React.FC<any> = () => {
       </ListItem>
       <ListItem icon>
         <Left>
-          <Button style={{ backgroundColor: '#007AFF' }}>
+          <Button style={{ backgroundColor: "#007AFF" }}>
             <Icon active type="MaterialIcons" name="wc" />
           </Button>
         </Left>
@@ -54,7 +63,7 @@ const SettingsScreen: React.FC<any> = () => {
       </ListItem>
       <ListItem icon>
         <Left>
-          <Button style={{ backgroundColor: '#007AFF' }}>
+          <Button style={{ backgroundColor: "#007AFF" }}>
             <Icon active type="MaterialIcons" name="group" />
           </Button>
         </Left>
@@ -68,7 +77,7 @@ const SettingsScreen: React.FC<any> = () => {
       </ListItem>
       <ListItem icon onPress={onLogoutPress}>
         <Left>
-          <Button style={{ backgroundColor: 'red' }}>
+          <Button style={{ backgroundColor: "red" }}>
             <Icon active name="md-exit" />
           </Button>
         </Left>
@@ -80,7 +89,7 @@ const SettingsScreen: React.FC<any> = () => {
         </Right>
       </ListItem>
     </List>
-  )
-}
+  );
+};
 
-export default SettingsScreen
+export default SettingsScreen;

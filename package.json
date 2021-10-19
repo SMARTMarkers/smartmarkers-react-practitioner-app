@@ -12,6 +12,7 @@
   "dependencies": {
     "@expo/vector-icons": "^10.2.1",
     "@types/react-redux": "^7.1.9",
+    "axios": "0.21.1",
     "expo": "~38.0.8",
     "expo-auth-session": "~1.4.0",
     "expo-font": "~8.2.1",
@@ -30,7 +31,7 @@
     "react-router-native": "^5.2.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "smartmarkers": "https://github.com/SMARTMarkers/smartmarkers-react.git"
+    "smartmarkers": "github:xyramsoftware/smartmarkers-react"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

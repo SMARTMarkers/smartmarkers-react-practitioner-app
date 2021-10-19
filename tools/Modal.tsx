@@ -1,1 +1,1 @@
-export { Modal } from 'react-native'
+export { Modal } from "react-native";

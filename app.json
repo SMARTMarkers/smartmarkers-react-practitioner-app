@@ -1,7 +1,7 @@
 {
   "expo": {
     "scheme": "example",
-    "name": "example",
+    "name": "Practitioner Application",
     "slug": "example",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",

@@ -1,11 +1,11 @@
-import { Platform } from 'react-native'
-import * as webRouter from './react-router'
-import * as nativeRouter from './react-router.native'
+import { Platform } from "react-native";
+import * as webRouter from "./react-router";
+import * as nativeRouter from "./react-router.native";
 
-let router: any = nativeRouter
+let router: any = nativeRouter;
 
-if (Platform.OS === 'web') {
-  router = webRouter
+if (Platform.OS === "web") {
+  router = webRouter;
 }
 
-export default router
+export default router;
