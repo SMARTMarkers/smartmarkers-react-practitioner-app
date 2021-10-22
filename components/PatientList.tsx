@@ -11,7 +11,7 @@ import { FlatList, ListRenderItemInfo, StyleSheet, TouchableOpacity } from "reac
 import { useDispatch, useSelector } from "react-redux";
 import { setPatients } from "../store/main/actions";
 import { Store } from "../store/models";
-import axios from 'axios'
+import { serverUrl } from "../node_modules/smartmarkers/src/models/internal/utils";
 
 interface PatientListProps {
   filter?: string;
@@ -52,10 +52,7 @@ const PatientList: React.FC<PatientListProps> = ({
   const dispatch = useDispatch();
   const [count, setcount] = React.useState(0);
   const [isNext, setIsNext] = React.useState(false);
-  const [Url, setUrl] = React.useState(`https://launch.smarthealthit.org/v/r4/sim/eyJoIjoiMSIsImoiOiIxIiwiZSI6ImVmYjVkNGNlLWRmZmMtNDdkZi1hYTZkLTA1ZDM3MmZkYjQwNyJ9/fhir/Patient?_summary=True`);
-
-
- 
+  const [Url, setUrl] = React.useState(serverUrl + `/Patient?_summary=True`);
 
   const renderItem = useCallback(
     (item: IPatient) => {
