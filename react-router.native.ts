@@ -7,4 +7,4 @@ export {
   Redirect,
   useHistory,
   useParams,
-} from 'react-router-native'
+} from "react-router-native";

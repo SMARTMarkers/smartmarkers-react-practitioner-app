@@ -7,4 +7,4 @@ export {
   Redirect,
   useHistory,
   useParams,
-} from 'react-router-dom'
+} from "react-router-dom";

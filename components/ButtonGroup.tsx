@@ -1,26 +1,26 @@
-import React from 'react'
-import { Text, Button, Segment, Icon, View } from 'native-base'
-import { GroupItem } from 'smartmarkers/dist/components/inputs'
-import { StyleSheet } from 'react-native'
+import React from "react";
+import { Text, Button, Segment, Icon, View } from "native-base";
+import { GroupItem } from "../smartmarkers-router";
+import { StyleSheet } from "react-native";
 
 export interface ButtonGroupProps<T> {
-  items: GroupItem<T>[]
-  value?: T
-  error?: string
-  onChange?: (value: T) => void
+  items: GroupItem<T>[];
+  value?: T;
+  error?: string;
+  onChange?: (value: T) => void;
 }
 
-const ButtonGroup: React.FC<ButtonGroupProps<any>> = props => {
-  const { items, value, onChange, error } = props
-  const hasError = !!error
+const ButtonGroup: React.FC<ButtonGroupProps<any>> = (props) => {
+  const { items, value, onChange, error } = props;
+  const hasError = !!error;
   const onPress = (value: any) => () => {
     if (onChange) {
-      onChange(value)
+      onChange(value);
     }
-  }
+  };
 
   return (
-    <View style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+    <View style={{ display: "flex", justifyContent: "center", width: "100%" }}>
       <Segment style={styles.segment}>
         {items.map((item, index) => (
           <Button
@@ -34,9 +34,9 @@ const ButtonGroup: React.FC<ButtonGroupProps<any>> = props => {
           >
             <Text
               style={{
-                color: item.value == value ? '#002a78' : 'white',
-                textAlign: 'center',
-                width: '100%',
+                color: item.value == value ? "#002a78" : "white",
+                textAlign: "center",
+                width: "100%",
               }}
             >
               {item.label}
@@ -46,43 +46,43 @@ const ButtonGroup: React.FC<ButtonGroupProps<any>> = props => {
         {hasError && <Icon name="close-circle" />}
       </Segment>
     </View>
-  )
-}
+  );
+};
 
-export default ButtonGroup
+export default ButtonGroup;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#002a78',
-    color: 'white',
+    backgroundColor: "#002a78",
+    color: "white",
     marginBottom: 5,
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     borderWidth: 1,
-    borderColor: 'transparent',
+    borderColor: "transparent",
   },
   activeButton: {
-    backgroundColor: 'white',
-    color: 'white',
+    backgroundColor: "white",
+    color: "white",
     marginBottom: 5,
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    borderColor: '#002a78',
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    borderColor: "#002a78",
     borderLeftWidth: 1,
     borderTopWidth: 1,
     borderRightWidth: 1,
     borderBottomWidth: 1,
   },
   segment: {
-    backgroundColor: 'transparent',
-    flexDirection: 'column',
-    height: 'auto',
-    alignItems: 'center',
-    alignSelf: 'center',
+    backgroundColor: "transparent",
+    flexDirection: "column",
+    height: "auto",
+    alignItems: "center",
+    alignSelf: "center",
     // width: 'max-content',
   },
-})
+});

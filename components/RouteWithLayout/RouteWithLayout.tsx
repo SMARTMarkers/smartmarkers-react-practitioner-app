@@ -1,15 +1,15 @@
-import React from 'react'
-import { Route } from '../../react-router'
+import React from "react";
+import { Route } from "../../react-router";
 
 interface RouteWithLayoutProps {
-  component: React.ComponentClass<any> | React.FunctionComponent<any>
-  layout: React.ComponentClass<any> | React.FunctionComponent<any>
-  path: string
-  exact?: boolean
+  component: React.ComponentClass<any> | React.FunctionComponent<any>;
+  layout: React.ComponentClass<any> | React.FunctionComponent<any>;
+  path: string;
+  exact?: boolean;
 }
 
 const RouteWithLayout: React.FC<RouteWithLayoutProps> = ({ ...props }) => {
-  const { layout: Layout, component: Component, ...rest } = props
+  const { layout: Layout, component: Component, ...rest } = props;
 
   return (
     <Route
@@ -20,7 +20,7 @@ const RouteWithLayout: React.FC<RouteWithLayoutProps> = ({ ...props }) => {
         </Layout>
       )}
     />
-  )
-}
+  );
+};
 
-export default RouteWithLayout
+export default RouteWithLayout;

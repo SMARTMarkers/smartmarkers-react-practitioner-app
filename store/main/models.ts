@@ -1,10 +1,10 @@
-import { IPatient, Report, Task } from 'smartmarkers'
+import { IPatient, Report, Task } from "../../smartmarkers-router";
 
 export interface RootState {
-  patients: IPatient[]
-  tasks: Task[]
-  reports: Report[]
-  selectedReport: Report | null
-  selectedPatient: IPatient | null
-  selectedTask: Task | null
+  patients: IPatient[];
+  tasks: Task[];
+  reports: Report[];
+  selectedReport: Report | null;
+  selectedPatient: IPatient | null;
+  selectedTask: Task | null;
 }

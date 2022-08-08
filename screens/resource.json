@@ -1,0 +1,1286 @@
+{
+  "res": [
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93705"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93706"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93708"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93709"
+      },
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93711"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93712"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93713"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "2.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "2.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93714"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93715"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "3.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93716"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93717"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93718"
+      },
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93705"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93706"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93708"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93709"
+      },
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93711"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93712"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93713"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "2.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "2.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93714"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93715"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "3.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93716"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93717"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "1.0" } }],
+          "linkId": "DPQ100",
+          "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with people?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93718"
+      },
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    },
+    {
+      "identifier": {
+        "system": "https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/DPQ_J.htm",
+        "value": "93721"
+      },
+      "item": [
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ010",
+          "text": "Over the last 2 weeks, how often have you been bothered by the following problems: little interest or pleasure in doing things? Would you say..."
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ020",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling down, depressed, or hopeless?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ030",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble falling or staying asleep, or sleeping too much?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ040",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling tired or having little energy?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ050",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] poor appetite or overeating?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ060",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ070",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] trouble concentrating on things, such as reading the newspaper or watching TV?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ080",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
+        },
+        {
+          "answer": [{ "valueCoding": { "code": "0.0" } }],
+          "linkId": "DPQ090",
+          "text": "[Over the last 2 weeks, how often have you been bothered by the following problems:] Thoughts that you would be better off dead or of hurting yourself in some way?"
+        }
+      ],
+      "questionnaire": "Questionnaire/661149",
+      "status": "completed",
+      "resourceType": "QuestionnaireResponse"
+    }
+  ]
+}
